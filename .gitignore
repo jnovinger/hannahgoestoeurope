@@ -1,2 +1,7 @@
 video/
 *pyc
+
+local_settings.py
+production_settings.py
+
+*.db

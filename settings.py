@@ -119,6 +119,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    'home',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -146,5 +147,9 @@ LOGGING = {
 
 try:
     from local_settings import *
+
+    INSTALLED_APPS += (
+        'django.contrib.staticfiles',
+    )
 except ImportError:
     pass

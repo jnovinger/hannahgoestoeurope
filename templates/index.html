@@ -11,8 +11,8 @@
 
   <!-- Mmmmm, Google Web Fonts. That's a paddlin'. -->
   <link href='http://fonts.googleapis.com/css?family=Lobster+Two:700&v2' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
 </head>
 
 <body>
@@ -27,10 +27,10 @@
 
   <div id="main" role="main">
 
-	<!-- Section #1 / Intro -->
-	<section id="first" class="story" data-speed="8" data-type="background">
-		<article>
-			<h1 class="lead">Hannah Goes To Europe</h1>
+    <!-- Section #1 / Intro -->
+    <section id="first" class="story" data-speed="8" data-type="background">
+        <article>
+            <h1 class="lead">Hannah Goes To Europe</h1>
 
             <p>
                 Hi! I am <strong>Hannah Novinger</strong> and I am going to <strong>Europe in 2012!</strong>
@@ -65,13 +65,13 @@
             <div class="license">
                 <a href="http://en.wikipedia.org/wiki/File:London_Eye_Twilight_April_2006.jpg" target="license">License</a>
             </div>
-	    </article>
-	</section>
+        </article>
+    </section>
 
-	<!-- Section #2 / Background Only -->
-	<section id="second" class="story" data-speed="4" data-type="background">
-		<article>
-			<h2 class="lead">London, England</h2>
+    <!-- Section #2 / Background Only -->
+    <section id="second" class="story" data-speed="4" data-type="background">
+        <article>
+            <h2 class="lead">London, England</h2>
             <p>
                 London has become one of the world's great melting pots while maintaining a distinct character that's all its own. From <strong>London Bridge</strong> to the <strong>House of Parliament</strong>, Great Britain's royal tradition and rich history greet you at every turn.
             </p>
@@ -87,53 +87,53 @@
             <!--<div class="license">-->
                 <!--<a href="http://en.wikipedia.org/wiki/File:Palace_of_Westminster,_London_-_Feb_2007.jpg" target="license">License</a>-->
             <!--</div>-->
-		</article>
-	</section>
-	
-	<!-- Section #3 / Photos -->
-	<section id="third" class="story" data-speed="6" data-type="background" data-offsetY="250">    	
-		<!--<div class="photograph" data-type="sprite" data-offsetY="1250" data-Xposition="25%" data-speed="2"></div>-->
-    	<article>
-    		<h2 class="lead">Kent, England</h2>
-	    	<div class="textbox">    	
-		    	<p>The next step in your parallax scrolling adventure is to create some sprites!</p>
-		    	<p>I have cut out one of the photos in this background and use it as a sprite. It scrolls at a different speed to the background <i>and</i> the window, and it's this effect that's used so well on Nike Better World and other parallax sites..</p>
-		    	<p>Using too many sprites can slow down older computers, and you need to use some clever maths (and trial & error!) to work out their placement on the page.</p>
-		    </div>
-    	</article>
-	</section>	
-	
+        </article>
+    </section>
+    
+    <!-- Section #3 / Photos -->
+    <section id="third" class="story" data-speed="6" data-type="background" data-offsetY="250">        
+        <!--<div class="photograph" data-type="sprite" data-offsetY="1250" data-Xposition="25%" data-speed="2"></div>-->
+        <article>
+            <h2 class="lead">Kent, England</h2>
+            <div class="textbox">        
+                <p>The next step in your parallax scrolling adventure is to create some sprites!</p>
+                <p>I have cut out one of the photos in this background and use it as a sprite. It scrolls at a different speed to the background <i>and</i> the window, and it's this effect that's used so well on Nike Better World and other parallax sites..</p>
+                <p>Using too many sprites can slow down older computers, and you need to use some clever maths (and trial & error!) to work out their placement on the page.</p>
+            </div>
+        </article>
+    </section>    
+    
 
-	<!-- Section #4 / HTML5 Video -->
-	<section id="fourth" class="story" data-speed="8" data-type="background" data-offsetY="250">
-    	<article>
-    		<h2 class="lead">Paris, France</h2>
-	    	<div class="textbox">    	
-		    	<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-		    	<p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-		    	<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. o.</p>
-		    </div>
-    	</article>
-		<!--<video controls width="640" width="480" data-type="video" data-offsetY="2400" data-speed="1.5">-->
-			<!--<source src="video/parallelparking.theora.ogv" type="video/ogg" />-->
-			<!--<source src="video/parallelparking.mp4" type="video/mp4" />-->
-			<!--<source src="video/parallelparking.webm" type="video/webm" />-->
-		<!--</video>-->
-	</section>	
+    <!-- Section #4 / HTML5 Video -->
+    <section id="fourth" class="story" data-speed="8" data-type="background" data-offsetY="250">
+        <article>
+            <h2 class="lead">Paris, France</h2>
+            <div class="textbox">        
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. o.</p>
+            </div>
+        </article>
+        <!--<video controls width="640" width="480" data-type="video" data-offsetY="2400" data-speed="1.5">-->
+            <!--<source src="video/parallelparking.theora.ogv" type="video/ogg" />-->
+            <!--<source src="video/parallelparking.mp4" type="video/mp4" />-->
+            <!--<source src="video/parallelparking.webm" type="video/webm" />-->
+        <!--</video>-->
+    </section>    
 
-	<!-- Section #5 / The End-->
-	<section id="theend" class="story" data-speed="8" data-type="background" data-offsetY="250">    	
-		<div class="byebye" data-type="sprite" data-offsetY="-1600" data-Xposition="50%" data-speed="-2"></div>	
-	</section>
-	
+    <!-- Section #5 / The End-->
+    <section id="theend" class="story" data-speed="8" data-type="background" data-offsetY="250">        
+        <div class="byebye" data-type="sprite" data-offsetY="-1600" data-Xposition="50%" data-speed="-2"></div>    
+    </section>
+
   </div> <!-- // End of #main -->
 
 
 
   <!-- Our Javascript, starting with jQuery -->
-  <script src='js/libs/jquery-1.6.1.min.js'></script>
-  <script src='js/libs/jquery.scrollTo-1.4.2-min.js'></script>
-  <script src="js/script.js"></script>
+  <script src='{{ STATIC_URL }}js/libs/jquery-1.6.1.min.js'></script>
+  <script src='{{ STATIC_URL }}js/libs/jquery.scrollTo-1.4.2-min.js'></script>
+  <script src="{{ STATIC_URL }}js/script.js"></script>
   <!--[if lt IE 7 ]>
     <script src="js/libs/dd_belatedpng.js"></script>
     <script>DD_belatedPNG.fix("img, .png_bg");

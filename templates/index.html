@@ -108,23 +108,40 @@
     <section id="fourth" class="story" data-speed="8" data-type="background" data-offsetY="250">
         <article>
             <h2 class="lead">Paris, France</h2>
-            <div class="textbox">        
+            <div class="textbox">
                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
                 <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. o.</p>
             </div>
         </article>
-        <!--<video controls width="640" width="480" data-type="video" data-offsetY="2400" data-speed="1.5">-->
-            <!--<source src="video/parallelparking.theora.ogv" type="video/ogg" />-->
-            <!--<source src="video/parallelparking.mp4" type="video/mp4" />-->
-            <!--<source src="video/parallelparking.webm" type="video/webm" />-->
-        <!--</video>-->
-    </section>    
+    </section>
 
     <!-- Section #5 / The End-->
-    <section id="theend" class="story" data-speed="8" data-type="background" data-offsetY="250">        
-        <div class="byebye" data-type="sprite" data-offsetY="-1600" data-Xposition="50%" data-speed="-2"></div>    
+    {%  if donations %}
+    <section id="donations" class="story" data-speed="4" data-type="background" data-offsetY="250">
+        <!--div class="byebye" data-type="sprite" data-offsetY="-1600" data-Xposition="50%" data-speed="-2"></div-->
+        <article>
+            <h1 data-speed="8">Thank you for helping make this trip happen!</h1>
+            <p class='summary'>
+                So far, you've donated over <strong>${{ donated_amount }}</strong> and sponsored more than <strong>{{ hours }} hours!</strong> Than
+            </p>
+            <form action="" method="post">
+            {%  csrf_token %}
+            {% for donation in donations %}
+                <p class='donated'><strong>{{ donation.display_name }}</strong><br><strong class="donate_date">{{ donation.date|date:"M d" }}</strong></p>
+            {% endfor %}
+
+            {% if form %}
+                <p class="donation_form">{{ form.as_table }}</p>
+            {% endif %}
+
+            <input type="Submit">
+
+            </form>
+        </article>
+
     </section>
+    {%  endif %}
 
   </div> <!-- // End of #main -->
 

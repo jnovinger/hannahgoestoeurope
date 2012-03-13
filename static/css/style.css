@@ -50,7 +50,7 @@ article h2 { font-family: 'Lobster Two'; font-size: 60px; margin: 25px 0; line-h
 }
 #first article h2 {text-align: center;}
 #first article p,
-#first article a { color: #fff; font-size: 16px; line-height: 1.25em;}
+#first article a { color: #fff; font-size: 18px; line-height: 1.25em;}
 #first article p {margin-bottom: 1em; margin-left: 5%; width: 80%;}
 #first article a {
     text-decoration: underline;
@@ -135,6 +135,49 @@ article h2 { font-family: 'Lobster Two'; font-size: 60px; margin: 25px 0; line-h
 /* The End */
 #theend .byebye { background: url(../images/theend.png) 40% 100px no-repeat fixed; height: 1000px; padding: 0; margin: 0; width: 100%; max-width: 1920px; position: relative; margin: 0 auto; }
 
+#donations article {
+    margin: 50px 0 0 50px;
+    background-color: #000;
+}
+
+#donations h1 {
+    color: #fff;
+    text-align: center;
+}
+
+#donations p {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 2em;
+    font-size: 24px;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+}
+
+#donations p.summary {
+    text-align: center;
+    font-size: 16px;
+}
+
+#donations p.donated{
+    display: inline-block;
+    background-color: blue;
+    margin: 5px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    padding: 15px;
+    width: 150px;
+    /*height: 150px;*/
+    border-radius: 15px;
+}
+
+#donation p.donated strong {
+    font-size: 24px;
+}
+
+#donations p.donated strong.donate_date {
+    font-size: 36px;
+}
 
 .license {
     color: #fff;

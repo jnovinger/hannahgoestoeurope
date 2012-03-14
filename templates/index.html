@@ -22,7 +22,7 @@
         <li class="circle" onclick="$.scrollTo('#second', 1000);"></li>
         <li class="circle" onclick="$.scrollTo('#third', 1000);"></li>
         <li class="circle" onclick="$.scrollTo('#fourth', 1000);"></li>
-        <li class="circle" onclick="$.scrollTo('#theend', 1000);"></li>
+        <li class="circle" onclick="$.scrollTo('#donations', 1000);"></li>
     </ul>
 
   <div id="main" role="main">
@@ -70,7 +70,7 @@
 
     <!-- Section #2 / Background Only -->
     <section id="second" class="story" data-speed="4" data-type="background">
-        <article>
+        <article data-type='sprite' data-speed='-4' data-offsetY="-1000">
             <h2 class="lead">London, England</h2>
             <p>
                 London has become one of the world's great melting pots while maintaining a distinct character that's all its own. From <strong>London Bridge</strong> to the <strong>House of Parliament</strong>, Great Britain's royal tradition and rich history greet you at every turn.
@@ -108,7 +108,7 @@
     <section id="fourth" class="story" data-speed="8" data-type="background" data-offsetY="250">
         <article>
             <h2 class="lead">Paris, France</h2>
-            <div class="textbox">
+            <div class="textbox" `data-type="sprite" data-offsetY="1250" data-Xposition="25%" data-speed="2">
                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
                 <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. o.</p>
@@ -117,31 +117,105 @@
     </section>
 
     <!-- Section #5 / The End-->
-    {%  if donations %}
     <section id="donations" class="story" data-speed="4" data-type="background" data-offsetY="250">
         <!--div class="byebye" data-type="sprite" data-offsetY="-1600" data-Xposition="50%" data-speed="-2"></div-->
         <article>
-            <h1 data-speed="8">Thank you for helping make this trip happen!</h1>
-            <p class='summary'>
-                So far, you've donated over <strong>${{ donated_amount }}</strong> and sponsored more than <strong>{{ hours }} hours!</strong> Than
-            </p>
-            <form action="" method="post">
-            {%  csrf_token %}
+            {%  if donations %}
+            <h1 data-speed="8" data-type="sprite" data-offsetY="250">Thank you!</h1>
+            <div class="textbox" data-type="sprite" data-offsetY="-250" data-speed="-2">
+                <p>
+                This is the part where I tell how much this is going to change my life and open my open my eyes--<strong>experiencing ancient
+                cultures</strong>, <strong>visiting historic locations</strong>, and <strong>blah blah blah</strong>.
+                </p>
+
+                <p class='summary'>
+                    So far, friends, family, and perfect strangers have donated over <strong>${{ donated_amount }}</strong> and sponsored more than <strong>{{ hours }} hours!</strong> Than
+                </p>
+
+
+            {% if form %}
+                <p>
+                    Want to help? Great! Drop me a not below. If you want I'll even send you a genuine, one-of-a-kind postcard
+                    from either England or France!
+                </p>
+                <form action="" method="post">
+                    {%  csrf_token %}
+                    <table id="form_table">
+                        {% if form.errors %}
+                        <tr>
+                            <td colspan="4" class="error">{{ form.errors }}</td>
+                        </tr>
+                        {% endif %}
+
+                        {% if form.first_name.error or form.last_name.error %}
+                        <tr class="error">
+                            <td>{{ form.first_name.error }}</td><td>{{ form.last_name.error }}</td>
+                        </tr>
+                        {% endif     %}
+                        <tr>
+                            <td>{{ form.first_name.label }}</td><td> {{ form.first_name }}</td>
+                            <td>{{ form.last_name.label }}</td><td> {{ form.last_name }}</td>
+                        </tr>
+
+                        {%  if form.amount.error or form.postcard.error  %}
+                        <tr class="error">
+                            <td>{{ form.amount.error }}</td><td>{{ form.postcard.error }}</td>
+                        </tr>
+                        {% endif %}
+
+                        <tr>
+                            <td>{{ form.amount.label }}?</td><td> {{ form.amount }}</td>
+                            <td>{{ form.postcard.label }}?</td><td> {{ form.postcard }}</td>
+                        </tr>
+
+                        <div id="optional_form">
+                        {% if form.address.error %}
+                        <tr class="error">
+                            <td colspan="2">{{ form.address.error }}</td>
+                        </tr>
+                        {% endif %}
+
+                        <tr>
+                            <td>{{ form.address.label }}</td><td colspan="3">{{ form.address }}</td>
+                        </tr>
+
+                        {%  if form.city.error %}
+                        <tr class="error">
+                            <td colspan="2">{{ form.city.error }}</td>
+                        </tr>
+                        {% endif %}
+
+                        {% if form.state.error %}
+                        <tr>
+                            <td colspan="2" class="error">{{ form.state.error }}</td>
+                        </tr>
+                        {% endif %}
+
+                        {% if form.errors.zip %}
+                        <tr>
+                            <td colspan="2" class="error">{{ form.errors.zip }}</td>
+                        </tr>
+                        {% endif %}
+
+                        <tr>
+                            <td colspan="2">{{ form.city.label }}: {{ form.city }}, {{ form.state.label }}: {{ form.state }} {{ form.zip.label }}: {{ form.zip }}</td>
+                        </tr>
+                        </div>
+
+                        <tr><td colspan="4"><input type="Submit"></td></tr>
+
+                    </table>
+                </form>
+            {% endif %}
+
+            </div>
             {% for donation in donations %}
                 <p class='donated'><strong>{{ donation.display_name }}</strong><br><strong class="donate_date">{{ donation.date|date:"M d" }}</strong></p>
             {% endfor %}
-
-            {% if form %}
-                <p class="donation_form">{{ form.as_table }}</p>
-            {% endif %}
-
-            <input type="Submit">
-
-            </form>
+            {%  endif %}
         </article>
 
     </section>
-    {%  endif %}
 
   </div> <!-- // End of #main -->
 

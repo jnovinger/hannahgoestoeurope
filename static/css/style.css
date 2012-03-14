@@ -36,6 +36,8 @@ article h2 { font-family: 'Lobster Two'; font-size: 60px; margin: 25px 0; line-h
 #second { background: url(../images/big_ben.jpg) 50% 0 no-repeat fixed; }
 #third { background: url(../images/canterbury_cathedral.jpg) 50% 0 no-repeat fixed; }
 #fourth { background: url(../images/paris_night.jpg) 50% 0 no-repeat fixed; }
+#donations { background: url(../images/puckered.png) 50% 0 repeat-y fixed; }
+
 #theend { background: url(../images/puckered.png) 50% bottom no-repeat fixed; }
 
 /* Introduction */
@@ -137,16 +139,18 @@ article h2 { font-family: 'Lobster Two'; font-size: 60px; margin: 25px 0; line-h
 
 #donations article {
     margin: 50px 0 0 50px;
-    background-color: #000;
 }
 
+#donations article div.textbox {
+    margin-left: 11%;
+    width: 75%;
+}
 #donations h1 {
     color: #fff;
     text-align: center;
 }
 
 #donations p {
-    text-align: center;
     vertical-align: middle;
     line-height: 2em;
     font-size: 24px;
@@ -156,12 +160,13 @@ article h2 { font-family: 'Lobster Two'; font-size: 60px; margin: 25px 0; line-h
 
 #donations p.summary {
     text-align: center;
-    font-size: 16px;
 }
 
 #donations p.donated{
     display: inline-block;
-    background-color: blue;
+    /*background-color: #999;*/
+    background: rgba(1,200,1,0.6);
+    text-align: center;
     margin: 5px;
     margin-right: 25px;
     margin-bottom: 25px;
@@ -177,6 +182,17 @@ article h2 { font-family: 'Lobster Two'; font-size: 60px; margin: 25px 0; line-h
 
 #donations p.donated strong.donate_date {
     font-size: 36px;
+}
+
+table#form_table {
+    font-size: 32px;
+    width: 100%;
+    text-align: center;
+}
+
+table#form_table td {
+    padding: 5px;
+    text-align: left;
 }
 
 .license {
@@ -199,12 +215,20 @@ ul#circle_nav {
 .circle {
     margin-bottom: 8px;
     display: block;
-    width: 16px;
-    height: 16px;
+    width: 26px;
+    height: 26px;
     background: #fff;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 13px;
+    border-radius: 13px;
+}
+
+div#optional_form {
+    display: none;
+}
+
+.error {
+    color: red;
 }
 
 .circle:hover {

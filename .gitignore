@@ -7,3 +7,5 @@ production_settings.py
 *.db
 
 *.jpg
+
+.idea

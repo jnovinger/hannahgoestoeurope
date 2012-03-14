@@ -20,11 +20,32 @@ AMOUNT_CHOICES = (
 
 )
 
+STATE_CHOICES = (
+    ('AK', 'Alaska'),
+    ('GA', 'Georgia'),
+    ('IN', 'Indiana'),
+    ('KS', 'Kansas'),
+    ('MO', 'Missouri'),
+    ('NY', 'New York'),
+    ('TX', 'Texas')
+)
+
+ZIP_CHOICES = (
+    ('63501', 63501),
+    ('66046', 66046)
+)
+
 class Donation(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=255, blank=True, null=True)
 
-    amount = models.DecimalField(max_digits=5, decimal_places=2)
+    postcard = models.BooleanField()
+    address = models.CharField(max_length=255, blank=True, null=True)
+    city = models.CharField(max_length=60, blank=True, null=True)
+    state = models.CharField(max_length=2, choices=STATE_CHOICES, blank=True, null=True)
+    zip = models.CharField(max_length=5, blank=True, null=True, choices=ZIP_CHOICES)
+
+    amount = models.DecimalField(max_digits=5, decimal_places=2, choices=AMOUNT_CHOICES)
     date = models.DateField(auto_now_add=True)
 
     received = models.BooleanField()

@@ -28,20 +28,58 @@ article h1 {
     color: #fff;
     margin-bottom: 0.5em;
 }
-article h2 { font-family: 'Lobster Two'; font-size: 60px; margin: 25px 0; line-height: 1em; }
+article h2 {
+    font-family: 'Lobster Two';
+    font-size: 60px;
+    margin: 25px 0;
+    line-height: 1em;
+}
 
-.story { height: 1000px; padding: 0; margin: 0; width: 100%; max-width: 1920px; position: relative; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.3); border-bottom: 1px solid rgba(0,0,0,0.4); box-shadow: 0 0 50px rgba(0,0,0,0.8);}
+.story {
+    height: 1000px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 1920px;
+    position: relative;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+}
 
-#first { background: url(../images/london5.jpg) 50% 0 no-repeat fixed; }
-#second { background: url(../images/big_ben.jpg) 50% 0 no-repeat fixed; }
-#third { background: url(../images/canterbury_cathedral.jpg) 50% 0 no-repeat fixed; }
-#fourth { background: url(../images/paris_night.jpg) 50% 0 no-repeat fixed; }
-#donations { background: url(../images/puckered.png) 50% 0 repeat-y fixed; }
+#first {
+    background: url(../images/london5.jpg) 50% 0 no-repeat fixed;
+}
 
-#theend { background: url(../images/puckered.png) 50% bottom no-repeat fixed; }
+#london {
+    background: url(../images/big_ben.jpg) 50% 0 no-repeat fixed;
+}
+
+#kent {
+    background: url(../images/canterbury_cathedral.jpg) 50% 0 no-repeat fixed;
+}
+
+#paris {
+    background: url(../images/paris_night.jpg) 50% 0 no-repeat fixed;
+}
+
+#theend {
+    background: url(../images/puckered.png) 50% bottom no-repeat fixed;
+}
 
 /* Introduction */
-#first .smashinglogo { background: url(../images/smashing-logo.png) 50% 100px no-repeat fixed; min-height: 1000px; padding: 0; margin: 0; width: 100%; max-width: 1920px; position: relative; margin: 0 auto; }
+#first .smashinglogo {
+    background: url(../images/smashing-logo.png) 50% 100px no-repeat fixed;
+    min-height: 1000px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 1920px;
+    position: relative;
+    margin: 0 auto;
+}
+
 #first article {
     margin-left: 25%;
     width: 55%;
@@ -50,17 +88,31 @@ article h2 { font-family: 'Lobster Two'; font-size: 60px; margin: 25px 0; line-h
     text-align: justify;
     /*text-align: center;*/
 }
-#first article h2 {text-align: center;}
+#first article h2 {
+    text-align: center;
+}
 #first article p,
-#first article a { color: #fff; font-size: 18px; line-height: 1.25em;}
-#first article p {margin-bottom: 1em; margin-left: 5%; width: 80%;}
+#first article a {
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.25em;
+}
+
+#first article p {
+    margin-bottom: 1em;
+    margin-left: 5%;
+    width: 80%;
+}
+
 #first article a {
     text-decoration: underline;
     text-shadow: none;
 }
+
 #first article a:hover {
     color: #fff;
 }
+
 .lead {
     text-shadow: 0 10px 0 rgba(0,0,0,0.5)
 }
@@ -80,36 +132,46 @@ article h2 { font-family: 'Lobster Two'; font-size: 60px; margin: 25px 0; line-h
 }
 
 /* Background Only */
-#second { padding: 50px 0;}
-#second article {
+#london {
+    padding: 50px 0;
+}
+
+#london article {
     font-size: larger;
     /*background: url(../images/grain.png) repeat #333;*/
     background: rgba(3,3,3,0.5);
     color: #fff;
     width: 445px;
     margin-left: 100px;
-    padding: 10px 20px;
+    padding: 0em 2em 3em 2em;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
     line-height: 1.5em;
     box-shadow: 0 0 25px rgba(0,0,0,0.3);
     border: 1px solid rgba(150,150,150,0.1);
 }
-/*#second article strong,*/
-/*#second article a {*/
+
+/*#london article strong,*/
+/*#london article a {*/
     /*text-decoration: none;*/
     /*font-size: larger;*/
     /*font-weight: bold;*/
     /*text-shadow: 0 3px 0 rgba(0,0,0,0.5);*/
 /*}*/
-#second article p { margin-bottom: 25px; }
-#second article a { color: #fff;}
+
+#london article p {
+    margin-bottom: 25px;
+}
+
+#london article a {
+    color: #fff;
+}
 
 /* Photograph */
-#third article {
+#kent article {
     /*background: url(../images/grain.png) repeat #333;*/
     background: rgba(3,3,3,0.5);
     color: #fff;
-    padding: 10px 20px;
+    padding: 0em 2em 3em 2em;
     margin: 100px 0 0 60%;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
     line-height: 1.5em;
@@ -119,23 +181,62 @@ article h2 { font-family: 'Lobster Two'; font-size: 60px; margin: 25px 0; line-h
     box-shadow: 0 0 25px rgba(0,0,0,0.3);
     border: 1px solid rgba(150,150,150,0.1);
 }
-#third .photograph { background: url(../images/photo.png) transparent 40% 100px no-repeat fixed; min-height: 1000px; padding: 0; margin: 0; width: 100%; max-width: 1920px; position: relative; margin: 0 auto; }
-#third article p {
+
+#kent .photograph {
+    background: url(../images/photo.png) transparent 40% 100px no-repeat fixed;
+    min-height: 1000px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 1920px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#kent article p {
     /*width: 300px;*/
     margin-bottom: 25px;
 }
 
-#third article div.textbox {
+#kent article div.textbox {
     width: 500px;
 }
 
 /* HTML5 Video */
-#fourth article {  margin-left: 10%; text-shadow: 0 -1px 0 rgba(0,0,0,0.5); line-height: 1.5em; color: #fff; position: absolute; top: 0; }
-#fourth article p { width: 300px; margin: 50px 0; }
-#fourth video { position: fixed; left: 50%; box-shadow: 0 0 25px rgba(0,0,0,0.7); z-index: 1;}
+#paris article {
+    margin-left: 10%;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+    line-height: 1.5em;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    background: rgba(3,3,3,0.5);
+    padding: 0px 3em 2em 3em;
+}
+
+#paris article p {
+    width: 300px;
+    margin: 50px 0;
+}
+
+#paris video {
+    position: fixed;
+    left: 50%;
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+    z-index: 1;
+}
 
 /* The End */
-#theend .byebye { background: url(../images/theend.png) 40% 100px no-repeat fixed; height: 1000px; padding: 0; margin: 0; width: 100%; max-width: 1920px; position: relative; margin: 0 auto; }
+#theend .byebye {
+    background: url(../images/theend.png) 40% 100px no-repeat fixed;
+    height: 1000px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 1920px;
+    position: relative;
+    margin: 0 auto;
+}
 
 #donations article {
     margin: 50px 0 0 50px;
@@ -165,7 +266,7 @@ article h2 { font-family: 'Lobster Two'; font-size: 60px; margin: 25px 0; line-h
 #donations p.donated{
     display: inline-block;
     /*background-color: #999;*/
-    background: rgba(1,200,1,0.6);
+    background: rgba(1,200,1,0.9);
     text-align: center;
     margin: 5px;
     margin-right: 25px;
@@ -195,11 +296,72 @@ table#form_table td {
     text-align: left;
 }
 
+div.blog_skip_button {
+    color: #fff;
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+}
+
+a.button {
+    background-color: #3278BE;
+    font-size:30px;
+    color:#fff;
+    text-decoration: none;
+    display:block;
+    padding:10px;
+    border:1px solid #DDD;
+    text-align:center;
+
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    -o-border-radius:5px;
+    border-radius:5px;
+}
+
+p.section-nav {
+    top: 1em;
+    position: relative;
+    margin-bottom: 1em;
+}
+
+p.section-nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a.prev {
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    text-decoration: none;
+    font-size: larger;
+    font-weight: bold;
+}
+
+a.next {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+    text-decoration: none;
+    font-size: larger;
+    font-weight: bold;
+}
+
+p.center {
+    text-align: center;
+}
+
+a.button:hover {
+    color:#fff;
+    border-color:#3278BE;
+}
+
 .license {
     color: #fff;
     position: fixed;
-    bottom: 5px;
-    right: 5px;
+    bottom: 15px;
+    right: 15px;
     font-weight: normal;
     font-size: 10px;
 }

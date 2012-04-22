@@ -17,14 +17,6 @@
 
 <body>
 
-    <ul id="circle_nav">
-        <li class="circle selected" onclick="$.scrollTo('#first', 1000);"></li>
-        <li class="circle" onclick="$.scrollTo('#second', 1000);"></li>
-        <li class="circle" onclick="$.scrollTo('#third', 1000);"></li>
-        <li class="circle" onclick="$.scrollTo('#fourth', 1000);"></li>
-        <li class="circle" onclick="$.scrollTo('#donations', 1000);"></li>
-    </ul>
-
   <div id="main" role="main">
 
     <!-- Section #1 / Intro -->
@@ -49,27 +41,35 @@
                 the <strong>Eiffel Tower!</strong>
             </p>
 
-            <p>
+            {% include "section-nav.html" with next="london" next_text="Get Started Now!" %}
+
+            <!--p>
                 Use the circles to the left to navigate to each location or simply scroll up and down. Go ahead,
                 <a href="#" onclick="$.scrollTo('#second', 1500); return false;">try it out</a>! Check out my <a href="#" onclick="$.scrollTo('#theend', 10000);">blog</a> at the end to see what I am up
                 to right now.
-            </p>
+            </p-->
 
-            <div class="footer">
+            <!--div class="footer">
                 <p>Gratuitously ripped off from Richard Shepherd / Twitter: <a href="http://twitter.com/richardshepherd" target="_blank">@richardshepherd</a><br>Web: <a href="http://richardshepherd.com">richardshepherd.com</a> / Original code: <a href="https://github.com/richardshepherd/Parallax-Scrolling/">Fork it here!</a></p>
                 <p>
                     Original adapted and backend built by <a href="http://www.jnovinger.net">Jason Novinger</a>.
                 </p>
+            </div-->
+            
+            {% if blog_entries %}
+            <div class="blog_skip_button">
+                <a class="button" href="#blog" onclick="$.scrollTo('#blog', 5000); return false;">Skip to Blog</a>
             </div>
+            {% endif %}
 
             <div class="license">
-                <a href="http://en.wikipedia.org/wiki/File:London_Eye_Twilight_April_2006.jpg" target="license">License</a>
+                <a href="http://en.wikipedia.org/wiki/File:London_Eye_Twilight_April_2006.jpg" target="license">About</a>
             </div>
         </article>
     </section>
 
     <!-- Section #2 / Background Only -->
-    <section id="second" class="story" data-speed="4" data-type="background">
+    <section id="london" class="story" data-speed="4" data-type="background">
         <article data-type='sprite' data-speed='-4' data-offsetY="-1000">
             <h2 class="lead">London, England</h2>
             <p>
@@ -83,7 +83,7 @@
                 chance to witness the ceremonial <strong>Changing of the Guard.</strong> Finally, snap a picture of
                 <strong>Big Ben</strong> from the bank of the River Thames.
             </p>
-
+            {% include "section-nav.html" with next="kent" prev="first" %}
             <!--<div class="license">-->
                 <!--<a href="http://en.wikipedia.org/wiki/File:Palace_of_Westminster,_London_-_Feb_2007.jpg" target="license">License</a>-->
             <!--</div>-->
@@ -91,7 +91,7 @@
     </section>
     
     <!-- Section #3 / Photos -->
-    <section id="third" class="story" data-speed="6" data-type="background" data-offsetY="250">        
+    <section id="kent" class="story" data-speed="6" data-type="background" data-offsetY="250">        
         <!--<div class="photograph" data-type="sprite" data-offsetY="1250" data-Xposition="25%" data-speed="2"></div>-->
         <article>
             <h2 class="lead">Kent, England</h2>
@@ -100,25 +100,40 @@
                 <p>I have cut out one of the photos in this background and use it as a sprite. It scrolls at a different speed to the background <i>and</i> the window, and it's this effect that's used so well on Nike Better World and other parallax sites..</p>
                 <p>Using too many sprites can slow down older computers, and you need to use some clever maths (and trial & error!) to work out their placement on the page.</p>
             </div>
+            {% include "section-nav.html" with next="paris" prev="london" %}
+
         </article>
-    </section>    
-    
+    </section>
 
     <!-- Section #4 / HTML5 Video -->
-    <section id="fourth" class="story" data-speed="8" data-type="background" data-offsetY="250">
+    <section id="paris" class="story" data-speed="8" data-type="background" data-offsetY="250">
         <article>
             <h2 class="lead">Paris, France</h2>
-            <div class="textbox" `data-type="sprite" data-offsetY="1250" data-Xposition="25%" data-speed="2">
+            <div class="textbox" data-type="sprite" data-offsetY="1250" data-Xposition="25%" data-speed="2">
                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
                 <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. o.</p>
             </div>
+            {% if blog_entries %}
+                {% include "section-nav.html" with prev="kent" next="blog" %}
+            {% else %}
+                {% include "section-nav.html" with prev="kent" %}
+            {% endif %}
         </article>
     </section>
 
-    <!-- Section #5 / The End-->
+    {% if blog_entries %}
+    <section id="blog" class="story" data-speed="4" data-type="background" data-offsetY="250">
+        {% for entry in blog_entries %}
+            <article>
+            </article>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- Section #5 / The End>
     <section id="donations" class="story" data-speed="4" data-type="background" data-offsetY="250">
-        <!--div class="byebye" data-type="sprite" data-offsetY="-1600" data-Xposition="50%" data-speed="-2"></div-->
+        <div class="byebye" data-type="sprite" data-offsetY="-1600" data-Xposition="50%" data-speed="-2"></div>
         <article>
             {%  if donations %}
             <h1 data-speed="8" data-type="sprite" data-offsetY="250">Thank you!</h1>
@@ -215,7 +230,7 @@
             {%  endif %}
         </article>
 
-    </section>
+    </section-->
 
   </div> <!-- // End of #main -->
 

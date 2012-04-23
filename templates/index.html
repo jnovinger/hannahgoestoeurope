@@ -77,19 +77,27 @@
             </p>
 
             <p>
-                Admire architectural marvels like the Baroque domes and spires of <strong>St. Paul's Cathedral</strong>,
-                the 17th-century church designed by Sir Christopher Wren. Check out the lively five-way intersection
-                at <strong>Piccadilly Circus</strong> as well as Hyde Park's urban greenery. You may even get a
-                chance to witness the ceremonial <strong>Changing of the Guard.</strong> Finally, snap a picture of
-                <strong>Big Ben</strong> from the bank of the River Thames.
+                Admire architectural marvels like the Baroque domes and spires of <strong>St. Paul's Cathedral</strong>, the 17th-century church designed by Sir Christopher Wren. Check out the lively five-way intersection at <strong>Piccadilly Circus</strong> as well as Hyde Park's urban greenery. You may even get a chance to witness the ceremonial <strong>Changing of the Guard.</strong> Finally, snap a picture of <strong>Big Ben</strong> from the bank of the River Thames.
             </p>
+
+            <a class="button sponsor" href="#donate" onclick="showPopOver('sponsor_form'); return false;">Sponsor Me!</a>
+
+            <h3>This portion sponsored by:</h3>
+            <p class="sponsors">
+                <span class="donor">Jason &amp; Cindy</span>
+                <span class="donor">Dawn</span>
+                <span class="donor">Jeannie</span>
+                <span class="donor">Debi</span>
+                <span class="donor">Chris</span>
+            </p>
+
             {% include "section-nav.html" with next="kent" prev="first" %}
             <!--<div class="license">-->
                 <!--<a href="http://en.wikipedia.org/wiki/File:Palace_of_Westminster,_London_-_Feb_2007.jpg" target="license">License</a>-->
             <!--</div>-->
         </article>
     </section>
-    
+   
     <!-- Section #3 / Photos -->
     <section id="kent" class="story" data-speed="6" data-type="background" data-offsetY="250">        
         <!--<div class="photograph" data-type="sprite" data-offsetY="1250" data-Xposition="25%" data-speed="2"></div>-->
@@ -98,7 +106,12 @@
             <div class="textbox">        
                 <p>The next step in your parallax scrolling adventure is to create some sprites!</p>
                 <p>I have cut out one of the photos in this background and use it as a sprite. It scrolls at a different speed to the background <i>and</i> the window, and it's this effect that's used so well on Nike Better World and other parallax sites..</p>
-                <p>Using too many sprites can slow down older computers, and you need to use some clever maths (and trial & error!) to work out their placement on the page.</p>
+                <p>Using too many sprites can slow down older computers, and you need to use some clever maths (and trial &amp; error!) to work out their placement on the page.</p>
+            <a class="button sponsor" href="#donate">Sponsor</a>
+            <p class="sponsors">
+            This portion of my trip sponsored by: Jason N., Cindy N., Dawn S., Jeannie S., Debbie S., and Chris S.
+            </p>
+
             </div>
             {% include "section-nav.html" with next="paris" prev="london" %}
 
@@ -110,10 +123,14 @@
         <article>
             <h2 class="lead">Paris, France</h2>
             <div class="textbox" data-type="sprite" data-offsetY="1250" data-Xposition="25%" data-speed="2">
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. o.</p>
+                <p>Bonjour, Paris! During your siteseeing in the <strong>City of Light</strong>, get a tase of Parisian style as you ride down the <strong>Champs-Elysees</strong>, an elegant boulevard packed with high fashion boutiques. Pass the Place de la Concorde and the Ard de Triomphe and strike a pose in front of the <strong>Eiffel Tower</strong>.</p>
+                <p>At the <strong>Ecole Militaire</strong>, see where a promising young Napoleon launched his rise to power. I.M. Pei's iconic glass pyramid marks the entrance to the renowned <strong>Louvre</strong>, home to treasures like Leonardo da Vinci's <strong>Mona Lisa</strong>. Then, travel to the <strong>Notre Dame Cathedral</strong> and admire its sculptured facade, strained-glass rose windows and seemingly weightless ceilings.</p>
+            <p class="sponsors">
+            <a class="button sponsor" href="#donate">Sponsor</a>
+            This portion of my trip sponsored by: Jason N., Cindy N., Dawn S., Jeannie S., Debbie S., and Chris S.
+            </p>
             </div>
+
             {% if blog_entries %}
                 {% include "section-nav.html" with prev="kent" next="blog" %}
             {% else %}
@@ -234,12 +251,18 @@
 
   </div> <!-- // End of #main -->
 
+  <div id="blanket" style="display:none;"></div>
+  <div id="sponsor_form" class="popover" align="center">
+    <h1>Thanks, You're Awesome!</h1>
+    <a class="close button" href="javascript:closePopOver('sponsor_form');">Close</a>
+  </div>
 
 
   <!-- Our Javascript, starting with jQuery -->
   <script src='{{ STATIC_URL }}js/libs/jquery-1.6.1.min.js'></script>
   <script src='{{ STATIC_URL }}js/libs/jquery.scrollTo-1.4.2-min.js'></script>
   <script src="{{ STATIC_URL }}js/script.js"></script>
+  <script src="{{ STATIC_URL }}js/popover.js"></script>
   <!--[if lt IE 7 ]>
     <script src="js/libs/dd_belatedpng.js"></script>
     <script>DD_belatedPNG.fix("img, .png_bg");

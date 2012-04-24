@@ -1,9 +1,9 @@
 <p class="section-nav">
     {% if prev %}
-    <a class="prev" href="#{{ prev }}" onclick="$.scrollTo('#{{ prev }}', 1000); return false;">{% if prev_text %}{{ prev_text }}{% else %}&lt;&lt; Previous{% endif %}</a>
+    <a class="prev" href="#{{ prev }}" onclick="$.scrollTo('#{{ prev }}', {duration: 2500, axis: 'y', easing: 'easeOutCubic'}); return false;">{% if prev_text %}{{ prev_text }}{% else %}&lt;&lt; Previous{% endif %}</a>
     {% endif %}
     {% if next %}
-    <a class="next" href="#{{ next }}" onclick="$.scrollTo('#{{ next }}', 1000); return false;">{% if next_text %}{{ next_text }}{% else %}Next &gt;&gt;{% endif %}</a>
+    <a class="next" href="#{{ next }}" onclick="$.scrollTo('#{{ next }}', {duration: 2500, axis: 'y', easing: 'easeOutCubic'}); return false;">{% if next_text %}{{ next_text }}{% else %}Next &gt;&gt;{% endif %}</a>
     {% endif %}
 </p>
 

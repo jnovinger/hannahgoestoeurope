@@ -9,7 +9,6 @@
   <meta name="author" content="Richard Shepherd, Smashing Magazine">
   <meta name="author" content="Jason Novinger">
 
-  <!-- Mmmmm, Google Web Fonts. That's a paddlin'. -->
   <link href='http://fonts.googleapis.com/css?family=Lobster+Two:700&v2' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css">
   <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
@@ -80,17 +79,7 @@
                 Admire architectural marvels like the Baroque domes and spires of <strong>St. Paul's Cathedral</strong>, the 17th-century church designed by Sir Christopher Wren. Check out the lively five-way intersection at <strong>Piccadilly Circus</strong> as well as Hyde Park's urban greenery. You may even get a chance to witness the ceremonial <strong>Changing of the Guard.</strong> Finally, snap a picture of <strong>Big Ben</strong> from the bank of the River Thames.
             </p>
 
-            <a class="button sponsor" href="#donate" onclick="showPopOver('sponsor_form'); return false;">Sponsor Me!</a>
-
-            <h3>This portion sponsored by:</h3>
-            <p class="sponsors">
-                <span class="donor">Jason &amp; Cindy</span>
-                <span class="donor">Dawn</span>
-                <span class="donor">Jeannie</span>
-                <span class="donor">Debi</span>
-                <span class="donor">Chris</span>
-            </p>
-
+            {% include "sponsor_form.html" with section="london" %}
             {% include "section-nav.html" with next="kent" prev="first" %}
             <!--<div class="license">-->
                 <!--<a href="http://en.wikipedia.org/wiki/File:Palace_of_Westminster,_London_-_Feb_2007.jpg" target="license">License</a>-->
@@ -107,12 +96,9 @@
                 <p>The next step in your parallax scrolling adventure is to create some sprites!</p>
                 <p>I have cut out one of the photos in this background and use it as a sprite. It scrolls at a different speed to the background <i>and</i> the window, and it's this effect that's used so well on Nike Better World and other parallax sites..</p>
                 <p>Using too many sprites can slow down older computers, and you need to use some clever maths (and trial &amp; error!) to work out their placement on the page.</p>
-            <a class="button sponsor" href="#donate">Sponsor</a>
-            <p class="sponsors">
-            This portion of my trip sponsored by: Jason N., Cindy N., Dawn S., Jeannie S., Debbie S., and Chris S.
-            </p>
 
             </div>
+            {% include "sponsor_form.html" with section="kent" %}
             {% include "section-nav.html" with next="paris" prev="london" %}
 
         </article>
@@ -125,12 +111,8 @@
             <div class="textbox" data-type="sprite" data-offsetY="1250" data-Xposition="25%" data-speed="2">
                 <p>Bonjour, Paris! During your siteseeing in the <strong>City of Light</strong>, get a tase of Parisian style as you ride down the <strong>Champs-Elysees</strong>, an elegant boulevard packed with high fashion boutiques. Pass the Place de la Concorde and the Ard de Triomphe and strike a pose in front of the <strong>Eiffel Tower</strong>.</p>
                 <p>At the <strong>Ecole Militaire</strong>, see where a promising young Napoleon launched his rise to power. I.M. Pei's iconic glass pyramid marks the entrance to the renowned <strong>Louvre</strong>, home to treasures like Leonardo da Vinci's <strong>Mona Lisa</strong>. Then, travel to the <strong>Notre Dame Cathedral</strong> and admire its sculptured facade, strained-glass rose windows and seemingly weightless ceilings.</p>
-            <p class="sponsors">
-            <a class="button sponsor" href="#donate">Sponsor</a>
-            This portion of my trip sponsored by: Jason N., Cindy N., Dawn S., Jeannie S., Debbie S., and Chris S.
-            </p>
+            {% include "sponsor_form.html" with section="paris" %}
             </div>
-
             {% if blog_entries %}
                 {% include "section-nav.html" with prev="kent" next="blog" %}
             {% else %}
@@ -148,118 +130,106 @@
     </section>
     {% endif %}
 
-    <!-- Section #5 / The End>
-    <section id="donations" class="story" data-speed="4" data-type="background" data-offsetY="250">
-        <div class="byebye" data-type="sprite" data-offsetY="-1600" data-Xposition="50%" data-speed="-2"></div>
-        <article>
-            {%  if donations %}
-            <h1 data-speed="8" data-type="sprite" data-offsetY="250">Thank you!</h1>
-            <div class="textbox" data-type="sprite" data-offsetY="-250" data-speed="-2">
-                <p>
-                This is the part where I tell how much this is going to change my life and open my open my eyes--<strong>experiencing ancient
-                cultures</strong>, <strong>visiting historic locations</strong>, and <strong>blah blah blah</strong>.
-                </p>
-
-                <p class='summary'>
-                    So far, friends, family, and perfect strangers have donated over <strong>${{ donated_amount }}</strong> and sponsored more than <strong>{{ hours }} hours!</strong> Than
-                </p>
-
-
-            {% if form %}
-                <p>
-                    Want to help? Great! Drop me a not below. If you want I'll even send you a genuine, one-of-a-kind postcard
-                    from either England or France!
-                </p>
-                <form action="" method="post">
-                    {%  csrf_token %}
-                    <table id="form_table">
-                        {% if form.errors %}
-                        <tr>
-                            <td colspan="4" class="error">{{ form.errors }}</td>
-                        </tr>
-                        {% endif %}
-
-                        {% if form.first_name.error or form.last_name.error %}
-                        <tr class="error">
-                            <td>{{ form.first_name.error }}</td><td>{{ form.last_name.error }}</td>
-                        </tr>
-                        {% endif     %}
-                        <tr>
-                            <td>{{ form.first_name.label }}</td><td> {{ form.first_name }}</td>
-                            <td>{{ form.last_name.label }}</td><td> {{ form.last_name }}</td>
-                        </tr>
-
-                        {%  if form.amount.error or form.postcard.error  %}
-                        <tr class="error">
-                            <td>{{ form.amount.error }}</td><td>{{ form.postcard.error }}</td>
-                        </tr>
-                        {% endif %}
-
-                        <tr>
-                            <td>{{ form.amount.label }}?</td><td> {{ form.amount }}</td>
-                            <td>{{ form.postcard.label }}?</td><td> {{ form.postcard }}</td>
-                        </tr>
-
-                        <div id="optional_form">
-                        {% if form.address.error %}
-                        <tr class="error">
-                            <td colspan="2">{{ form.address.error }}</td>
-                        </tr>
-                        {% endif %}
-
-                        <tr>
-                            <td>{{ form.address.label }}</td><td colspan="3">{{ form.address }}</td>
-                        </tr>
-
-                        {%  if form.city.error %}
-                        <tr class="error">
-                            <td colspan="2">{{ form.city.error }}</td>
-                        </tr>
-                        {% endif %}
-
-                        {% if form.state.error %}
-                        <tr>
-                            <td colspan="2" class="error">{{ form.state.error }}</td>
-                        </tr>
-                        {% endif %}
-
-                        {% if form.errors.zip %}
-                        <tr>
-                            <td colspan="2" class="error">{{ form.errors.zip }}</td>
-                        </tr>
-                        {% endif %}
-
-                        <tr>
-                            <td colspan="2">{{ form.city.label }}: {{ form.city }}, {{ form.state.label }}: {{ form.state }} {{ form.zip.label }}: {{ form.zip }}</td>
-                        </tr>
-                        </div>
-
-                        <tr><td colspan="4"><input type="Submit"></td></tr>
-
-                    </table>
-                </form>
-            {% endif %}
-
-            </div>
-            {% for donation in donations %}
-                <p class='donated'><strong>{{ donation.display_name }}</strong><br><strong class="donate_date">{{ donation.date|date:"M d" }}</strong></p>
-            {% endfor %}
-            {%  endif %}
-        </article>
-
-    </section-->
-
   </div> <!-- // End of #main -->
 
   <div id="blanket" style="display:none;"></div>
   <div id="sponsor_form" class="popover" align="center">
     <h1>Thanks, You're Awesome!</h1>
     <a class="close button" href="javascript:closePopOver('sponsor_form');">Close</a>
+    {% if form %}i
+      <p>
+          Want to help? Great! Drop me a not below. If you want I'll even send you a genuine, one-of-a-kind postcard from either England or France!
+      </p>
+      <form action="" method="post">
+          {% csrf_token %}
+          <table id="form_table">
+              {% if form.errors %}
+              <tr>
+                  <td colspan="2" class="error">{{ form.errors }}</td>
+              </tr>
+              {% endif %}
+
+              {% if form.first_name.error or form.last_name.error %}
+              <tr class="error">
+                  <td>{{ form.first_name.error }}</td><td>{{ form.last_name.error }}</td>
+              </tr>
+              {% endif %}
+              <tr>
+                  <td class="label">{{ form.first_name.label }}</td><td> {{ form.first_name }}</td>
+              </tr>
+              <tr>
+                  <td class="label">{{ form.last_name.label }}</td><td> {{ form.last_name }}</td>
+              </tr>
+
+              {%  if form.amount.error or form.postcard.error  %}
+              <tr class="error">
+                  <td>{{ form.amount.error }}</td><td>{{ form.postcard.error }}</td>
+              </tr>
+              {% endif %}
+
+              <tr>
+                  <td class="label">{{ form.amount.label }}?</td><td> {{ form.amount }}</td>
+              </tr>
+              <tr>
+                  <td>&nbsp;</td><td>{{ form.postcard }}<label>I want a postcard!</label></td>
+
+              </tr>
+
+              <div id="optional_form">
+              {% if form.address.error %}
+              <tr class="error">
+                  <td colspan="2">{{ form.address.error }}</td>
+              </tr>
+              {% endif %}
+
+              <tr>
+                  <td class="label">{{ form.address.label }}</td><td colspan="3">{{ form.address }}</td>
+              </tr>
+
+              {%  if form.city.error %}
+              <tr class="error">
+                  <td colspan="2">{{ form.city.error }}</td>
+              </tr>
+              {% endif %}
+
+              {% if form.state.error %}
+              <tr>
+                  <td colspan="2" class="error">{{ form.state.error }}</td>
+              </tr>
+              {% endif %}
+
+              {% if form.errors.zip %}
+              <tr>
+                  <td colspan="2" class="error">{{ form.errors.zip }}</td>
+              </tr>
+              {% endif %}
+
+              <tr>
+                  <td class="label">{{ form.city.label }}</td><td>{{ form.city }}</td>
+              </tr>
+              <tr>
+                <td class="label">{{ form.state.label }}</td><td>{{ form.state }}</td>
+              </tr>
+              <tr>
+                <td class="label">{{ form.zip.label }}</td><td>{{ form.zip }}</td>
+              </tr>
+              </div>
+
+              <tr><td colspan="2"><input type="Submit"></td></tr>
+
+          </table>
+      </form>
+    {% endif %}
+
+
   </div>
 
 
   <!-- Our Javascript, starting with jQuery -->
-  <script src='{{ STATIC_URL }}js/libs/jquery-1.6.1.min.js'></script>
+  <!-- uncomment the next line for local dev, and comment out the googleapis line -->
+  <!--script src='{{ STATIC_URL }}js/libs/jquery-1.7.1.min.js'></script-->
+  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+  <script src='{{ STATIC_URL }}js/easing.js'></script>
   <script src='{{ STATIC_URL }}js/libs/jquery.scrollTo-1.4.2-min.js'></script>
   <script src="{{ STATIC_URL }}js/script.js"></script>
   <script src="{{ STATIC_URL }}js/popover.js"></script>

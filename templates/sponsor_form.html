@@ -1,0 +1,15 @@
+<a class="button sponsor" href="#donate" onclick="showPopOver('sponsor_form'); return false;">Sponsor Me!</a>
+
+<h3>{{ section|title }} portion sponsored by:</h3>
+<p class="sponsors">
+    {% for sponsor in sponsors %}
+        {% if section in sponsor.sponsored_sections %}
+        <span class="donor">{{ sponsor.display_name }}</span>
+        {% endif %}
+    {% endfor %}
+    <span class="donor">Jason &amp; Cindy</span>
+    <span class="donor">Dawn</span>
+    <span class="donor">Jeannie</span>
+    <span class="donor">Debi</span>
+    <span class="donor">Chris</span>
+</p>

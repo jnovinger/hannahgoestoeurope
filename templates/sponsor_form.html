@@ -1,0 +1,121 @@
+<div id="sponsor_form" class="popover" align="center">
+  <h1>Thanks, You're Awesome!</h1>
+  <a class="close button" href="" onclick="$('#blanket').fadeOut('slow'); $('#sponsor_form').fadeOut('slow'); return false;">Close</a>
+  {% if form %}
+    <p>Want to help? Great! Drop me a note below.</p>
+    <p>If you want I'll even send you a genuine, one-of-a-kind postcard from either England or France!
+    </p>
+    <form action="" method="post">
+    <div class="fieldset">
+        <span class="label">Let's talk about you!</span>
+        {% csrf_token %}
+        <table class="form_table">
+
+          <tr>
+              <td class="label">
+                <span class="required">{{ form.first_name.label }}</span>
+              </td>
+              <td class="error">
+                {% if form.first_name.errors %}{{ form.first_name.errors.0 }}{% endif %}
+              </td>
+          </tr>
+          <tr>
+              <td colspan="2">{{ form.first_name }}</td>
+          </tr>
+
+            <tr>
+              <td class="label">
+                {{ form.last_name.label }}
+              </td>
+              <td>
+                {% if form.last_name.errors %}<span class="error">({{ form.last_name.errors.0 }})</span>{% else %}&nbsp;{% endif %}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">{{ form.last_name }}</td>
+            </tr>
+            <tr>
+              <td colspan="2" class="postcard">
+                <input type="checkbox" name="postcard" id="id_postcard" /><label for="id_postcard">I want a postcard!</label>
+              </td>
+            </tr>
+            <tr class="optional_address">
+              <td class="label">
+                {{ form.address.label }}
+              </td>
+              <td class="error">
+              </td>
+            </tr>
+            <tr class="optional_address">
+              <td colspan="2">
+                {{ form.address }}
+              </td>
+            </tr>
+            <tr colspan="2" class="optional_address">
+              <td class="label">
+                {{ form.city.label }}
+              </td>
+              <td class="error">
+              </td>
+            </tr>
+            <tr class="optional_address">
+              <td colspan="2">
+                {{ form.city }}
+              </td>
+            </tr>
+            <tr class="optional_address">
+              <td class="label">
+                {{ form.state.label }}
+              </td>
+              <td class="label">
+                {{ form.zip.label }}
+              </td>
+            </tr>
+            <tr class="optional_address">
+              <td>
+                {{ form.state }}
+              </td>
+              <td>
+                {{ form.zip }}
+              </td>
+            </tr>
+        </table>
+    </div>
+    <div class="fieldset">
+      <span class="label">Let's talk specifics!</span>
+      <table class="form_table">
+            <tr>
+              <td class="label">{{ form.amount.label }}?</td>
+              <td class="error">
+                {% if form.amount.errors %}{{ form.amount.errors.0 }}{% endif %}
+              </td>
+            </tr>
+            <tr><td colspan="2">{{ form.amount }}</td></tr>
+            <tr><td class="label">Payment Info</td><td class="error"></td></tr>
+            <tr>
+              <td>
+              <input type="radio" id="id_payment_type_0" value="check" name="payment_type" /><label for="id_payment_type_0">Check<img src=""></label>
+              <input type="radio" id="id_payment_type_1" value="cc" name="payment_type" /><label for="id_payment_type_1"><img alt="" title="" src="http://www.credit-card-logos.com/images/multiple_credit-card-logos-2/credit_card_logos_31.gif" width="188" height="32" border="0" /></label>
+              </td>
+              <td class="error">
+              {{ form.payment_type.errors.0 }}
+              </td>
+            </tr>
+            <tr id="check_div">
+              <td colspan="2">Check div!</td>
+            </tr>
+            <tr id="cc_div">
+              <td colspan="2">CC div!</td>
+            </tr>
+            <tr><td colspan="2" class="center"><input type="Submit" class="submit"></td></tr>
+
+      </table>
+    </div>
+    </form>
+
+  {% endif %}
+
+
+</div>
+
+

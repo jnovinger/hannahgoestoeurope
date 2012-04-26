@@ -30,34 +30,48 @@ STATE_CHOICES = (
     ('TX', 'Texas')
 )
 
-ZIP_CHOICES = (
-    ('63501', 63501),
-    ('66046', 66046)
+PMT_CHOICES = (
+    ('check', 'Check'),
+    ('cc', 'Credit Card'),
 )
+
+class Section(models.Model):
+    slug = models.SlugField(max_length=6)
+
+    @property
+    def title(self):
+        return self.slug.title()
+
+    def __unicode__(self):
+        return u"%s" % self.title
 
 class Donation(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=255, blank=True, null=True)
+    card_name = models.CharField(max_length=255, blank=True, null=True, help_text="Your name as it appears on your credit card, if different from above.")
 
     postcard = models.BooleanField()
     address = models.CharField(max_length=255, blank=True, null=True)
     city = models.CharField(max_length=60, blank=True, null=True)
     state = models.CharField(max_length=2, choices=STATE_CHOICES, blank=True, null=True)
-    zip = models.CharField(max_length=5, blank=True, null=True, choices=ZIP_CHOICES)
+    zip = models.CharField(max_length=5, blank=True, null=True)
 
-    amount = models.DecimalField(max_digits=5, decimal_places=2, choices=AMOUNT_CHOICES)
+    amount = models.DecimalField(max_digits=5, decimal_places=2)
+    payment_type = models.CharField(max_length=5, choices=PMT_CHOICES)
     date = models.DateField(auto_now_add=True)
 
+    sections = models.ManyToManyField(Section, related_name='donations')
     received = models.BooleanField()
     cleared = models.BooleanField()
 
+    @property
     def display_name(self):
         return "%s %s." % (self.first_name, self.last_name[:1])
 
     def __unicode__(self):
         full_name = self.first_name
         full_name = full_name + " " + self.last_name if self.last_name else full_name
-        return "%s - $%s" % (full_name, self.amount)
+        return u"%s - $%s" % (full_name, self.amount)
 
     class Meta:
         ordering = ['date', 'last_name', 'first_name', 'amount', ]

@@ -4,7 +4,7 @@ from django.db.models import Sum
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from models import Post, Donation
+from models import Post, Donation, Section
 from forms import DonationForm
 
 def home(request):
@@ -12,13 +12,22 @@ def home(request):
         form = DonationForm(request.POST)
         if form.is_valid():
             form.save()
+            form = DonationForm
+            # don't forget to create success msg
     else:
         form = DonationForm
 
     posts = Post.objects.filter(is_published=True)[:5]
-    donations = Donation.objects.all()
-    donated_amount = donations.aggregate(Sum('amount'))['amount__sum']
-    hours = int(floor(donated_amount / 10))
-    return render_to_response('index.html',
-        {'posts': posts, 'donations': donations, 'form': form, 'donated_amount': donated_amount, 'hours': hours},
+    sections = Section.objects.all()
+    section_sponsors = {}
+    for section in sections:
+        section_sponsors[section.slug] = section.donations.all()
+
+    return render_to_response(
+        'sponsor_form.html',
+        {
+            'posts': posts,
+            'section_sponsors': section_sponsors,
+            'form': form,
+        },
         context_instance=RequestContext(request))

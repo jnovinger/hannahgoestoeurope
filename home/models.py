@@ -13,13 +13,6 @@ class Post(models.Model):
     class Meta:
         ordering = ['publish_date', ]
 
-AMOUNT_CHOICES = (
-    (5, '$5'),
-    (10, '$10'),
-    (999.99, '$1000')
-
-)
-
 STATE_CHOICES = (
     ('AK', 'Alaska'),
     ('GA', 'Georgia'),
@@ -31,8 +24,9 @@ STATE_CHOICES = (
 )
 
 PMT_CHOICES = (
-    ('check', 'Check'),
-    ('cc', 'Credit Card'),
+    ('', ''),
+    ('check', 'a check'),
+    ('cc', 'my credit card'),
 )
 
 class Section(models.Model):

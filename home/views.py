@@ -24,7 +24,7 @@ def home(request):
         section_sponsors[section.slug] = section.donations.all()
 
     return render_to_response(
-        'sponsor_form.html',
+        'index.html',
         {
             'posts': posts,
             'section_sponsors': section_sponsors,

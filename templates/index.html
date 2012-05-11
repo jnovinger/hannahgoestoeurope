@@ -42,11 +42,6 @@
 
             {% include "section-nav.html" with next="london" next_text="Get Started Now!" %}
 
-            <!--p>
-                Use the circles to the left to navigate to each location or simply scroll up and down. Go ahead,
-                <a href="#" onclick="$.scrollTo('#second', 1500); return false;">try it out</a>! Check out my <a href="#" onclick="$.scrollTo('#theend', 10000);">blog</a> at the end to see what I am up
-                to right now.
-            </p-->
 
             <!--div class="footer">
                 <p>Gratuitously ripped off from Richard Shepherd / Twitter: <a href="http://twitter.com/richardshepherd" target="_blank">@richardshepherd</a><br>Web: <a href="http://richardshepherd.com">richardshepherd.com</a> / Original code: <a href="https://github.com/richardshepherd/Parallax-Scrolling/">Fork it here!</a></p>
@@ -54,7 +49,6 @@
                     Original adapted and backend built by <a href="http://www.jnovinger.net">Jason Novinger</a>.
                 </p>
             </div-->
-            
             {% if blog_entries %}
             <div class="blog_skip_button">
                 <a class="button" href="#blog" onclick="$.scrollTo('#blog', 5000); return false;">Skip to Blog</a>
@@ -151,16 +145,37 @@
 <script type="text/javascript">
 
 $('#id_postcard').change(function() {
-    $('.optional_address').toggle(1000);
-});
+    if ($(this).val() == 'True') {
+        $('#address_info').show(1000);
+    } else {
+        $('#address_info').hide(1000);
+    }
+})
 
-function togglePaymentDiv(which, other) {
-    $(which).show(1000);
-    $(other).hide(1000);
-}
+$('#id_first_name').change(function() {
+    $('#id_first_name_2').val($('#id_first_name').val());
+})
 
-$('#id_payment_type_0').change(togglePaymentDiv("#check_div", "#cc_div"));
-$('#id_payment_type_1').change(togglePaymentDiv("#cc_div", "#check_div"));
+$('#id_last_name').change(function() {
+    $('#id_last_name_2').val($('#id_last_name').val());
+})
+
+$('#id_payment_type').change(
+    function() {
+        val = $('#id_payment_type').val();
+        if (val == "check") {
+            $('#details').show(1000);
+            $('#check_info').show(1000);
+            $('#cc_info').hide(1000);
+        } else if (val == "cc") {
+            $('#details').show(1000);
+            $('#cc_info').show(1000);
+            $('#check_info').hide(1000);
+        } else {
+            $('#details').hide(1000);
+        }
+    }
+);
 
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-28426172-1']);

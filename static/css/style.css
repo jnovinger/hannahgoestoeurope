@@ -451,18 +451,14 @@ input.submit {
 }
 
 div#sponsor_form {
+    background: url(../images/postcard_cropped.jpg) 250px 130px no-repeat fixed transparent;
     position: fixed;
-    top: 7%;
-    left: 12%;
+    top: 15%;
+    left: 15%;
     display: none;
     z-index: 9999;
-    height: auto;
-    min-width: 75%;
-    background-color: #eaeaea;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -o-border-radius: 10px;
-    border-radius: 10px;
+    height: 660px;
+    width: 1011px;
     color: #000;
     box-shadow: 0 0 100px rgba(0,0,0,1);
 }
@@ -472,34 +468,73 @@ div#sponsor_form h1 {
 }
 
 div.fieldset {
-    height: 60%;
-    width: 40%;
     padding: 2em 1em 1em 1em;
     margin-top: 2em;
     margin-bottom: 1em;
     position: relative;
-    border-color: #666666;
-    border-width: 2px;
-    border-style: solid;
     vertical-align: top;
     display: inline-block;
 
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -o-border-radius: 10px;
-    border-radius: 10px;
+    text-align: left;
+    font-size: 1.2em;
+    line-height: 1.7em;
 }
 
 div.fieldset span.label {
-    background: #eaeaea;
+    background: transparent;
     font-family:  'Lobster Two';
-    padding: 0 0.25em 0 0.25em;
-    z-index:10000;
-    position: absolute;
-    top: -0.75em;
-    left: 0.5em;
     font-weight: bold;
     font-size: 20pt;
+}
+
+#address_info {
+    display: none;
+    position: absolute;
+    left: 600px;
+    top: 250px;
+}
+
+#details {
+    display: none;
+    position: absolute;
+    left: 12px;
+    top: 350px;
+    width: 488px;
+}
+
+#cc_info, #check_info {
+    display: none;
+}
+
+#postcard_content {
+    position: absolute;
+    left: 12px;
+    top: 200px;
+    width: 488px;
+}
+
+#check_info blockquote {
+    margin: 0.5em 0 0.5em 2em;
+    font-family: Helvetica, sans;
+    line-height: 1em;
+    font-weight: bold;
+}
+
+div.fieldset input {
+    border: none;
+    border-bottom: #000 dashed 1px;
+    background-color: transparent;
+    outline: none;
+}
+
+div.fieldset input:focus {
+    border-bottom-style: solid;
+}
+
+input.submit {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
 }
 
 div#sponsor_form p {
@@ -510,7 +545,7 @@ div#sponsor_form p {
 a.close {
     font-size: smaller;
     position: absolute;
-    top: 1em;
-    right: 1em;
+    bottom: 1em;
+    left: 1em;
     width: auto;
 }

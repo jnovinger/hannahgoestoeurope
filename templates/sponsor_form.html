@@ -1,119 +1,41 @@
 <div id="sponsor_form" class="popover" align="center">
-  <h1>Thanks, You're Awesome!</h1>
-  <a class="close button" href="" onclick="$('#blanket').fadeOut('slow'); $('#sponsor_form').fadeOut('slow'); return false;">Close</a>
+  <a class="close" href="" onclick="$('#blanket').fadeOut('slow'); $('#sponsor_form').fadeOut('slow'); return false;">Cancel</a>
   {% if form %}
-    <p>Want to help? Great! Drop me a note below.</p>
-    <p>If you want I'll even send you a genuine, one-of-a-kind postcard from either England or France!
-    </p>
     <form action="" method="post">
-    <div class="fieldset">
-        <span class="label">Let's talk about you!</span>
-        {% csrf_token %}
-        <table class="form_table">
+    <div class="fieldset" id="postcard_content">{% csrf_token %}
+      <span class='label'>Thanks, You're Awesome!</span>
 
-          <tr>
-              <td class="label">
-                <span class="required">{{ form.first_name.label }}</span>
-              </td>
-              <td class="error">
-                {% if form.first_name.errors %}{{ form.first_name.errors.0 }}{% endif %}
-              </td>
-          </tr>
-          <tr>
-              <td colspan="2">{{ form.first_name }}</td>
-          </tr>
-
-            <tr>
-              <td class="label">
-                {{ form.last_name.label }}
-              </td>
-              <td>
-                {% if form.last_name.errors %}<span class="error">({{ form.last_name.errors.0 }})</span>{% else %}&nbsp;{% endif %}
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">{{ form.last_name }}</td>
-            </tr>
-            <tr>
-              <td colspan="2" class="postcard">
-                <input type="checkbox" name="postcard" id="id_postcard" /><label for="id_postcard">I want a postcard!</label>
-              </td>
-            </tr>
-            <tr class="optional_address">
-              <td class="label">
-                {{ form.address.label }}
-              </td>
-              <td class="error">
-              </td>
-            </tr>
-            <tr class="optional_address">
-              <td colspan="2">
-                {{ form.address }}
-              </td>
-            </tr>
-            <tr colspan="2" class="optional_address">
-              <td class="label">
-                {{ form.city.label }}
-              </td>
-              <td class="error">
-              </td>
-            </tr>
-            <tr class="optional_address">
-              <td colspan="2">
-                {{ form.city }}
-              </td>
-            </tr>
-            <tr class="optional_address">
-              <td class="label">
-                {{ form.state.label }}
-              </td>
-              <td class="label">
-                {{ form.zip.label }}
-              </td>
-            </tr>
-            <tr class="optional_address">
-              <td>
-                {{ form.state }}
-              </td>
-              <td>
-                {{ form.zip }}
-              </td>
-            </tr>
-        </table>
+      <p>That's so cool! My name is <input id="id_first_name" type="text" name="first_name" maxlength="50" size="10" /> <input id="id_last_name" type="text" name="last_name" maxlength="255" size="15" /> and I want to help out. Here's my {{ form.amount }} to help Hannah visit {{ form.sections }} I'll pay with {{ form.payment_type }}. Oh yeah, and I {{ form.postcard }} a postcard from Europe.</p>
     </div>
-    <div class="fieldset">
-      <span class="label">Let's talk specifics!</span>
-      <table class="form_table">
-            <tr>
-              <td class="label">{{ form.amount.label }}?</td>
-              <td class="error">
-                {% if form.amount.errors %}{{ form.amount.errors.0 }}{% endif %}
-              </td>
-            </tr>
-            <tr><td colspan="2">{{ form.amount }}</td></tr>
-            <tr><td class="label">Payment Info</td><td class="error"></td></tr>
-            <tr>
-              <td>
-              <input type="radio" id="id_payment_type_0" value="check" name="payment_type" /><label for="id_payment_type_0">Check<img src=""></label>
-              <input type="radio" id="id_payment_type_1" value="cc" name="payment_type" /><label for="id_payment_type_1"><img alt="" title="" src="http://www.credit-card-logos.com/images/multiple_credit-card-logos-2/credit_card_logos_31.gif" width="188" height="32" border="0" /></label>
-              </td>
-              <td class="error">
-              {{ form.payment_type.errors.0 }}
-              </td>
-            </tr>
-            <tr id="check_div">
-              <td colspan="2">Check div!</td>
-            </tr>
-            <tr id="cc_div">
-              <td colspan="2">CC div!</td>
-            </tr>
-            <tr><td class="label">I want to sponsor ...</td></tr>
-            <tr><td>{{ form.sections }}</td></tr>
-            <tr><td colspan="2" class="center"><input type="Submit" class="submit"></td></tr>
-
-      </table>
+    <div class="fieldset" id="details">
+      <span class="label">Sorry, just a few more details ...</span>
+      <div id="cc_info">
+        Alrighty then, my credit card number is <input id='cc_number' type="text" size=16> and it expires in {{ form.month }}/{{ form.year }}. That three digit code thingy on the back is <input type=text size=3 id='cvv'> 
+      </div>
+      <div id="check_info">
+        Aww, you're so sweet. If you don't mind, send the check to:
+        <blockquote>
+          Hannah Novinger<br>
+          1501 E 24th Street<br>
+          Lawrence, KS 66046<br>
+        </blockquote>
+        Thanks again!
+      </div>
     </div>
+    <div class="fieldset" id="address_info">
+        <span class="label">Send my postcard to ...</span>
+        <p>
+        <input id="id_first_name_2" type="text" maxlength="50" size="10" /> <input id="id_last_name_2" type="text" maxlength="255" size="15" /><br>
+        {{ form.address }}<br>
+        {{ form.city }}, {{ form.state }}<br>
+        {{ form.zip }}
+        </p>
+    </div>
+
+    <input type="Submit" class="submit">
     </form>
+
+
 
   {% endif %}
 

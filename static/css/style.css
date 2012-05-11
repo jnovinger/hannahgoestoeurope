@@ -8,20 +8,6 @@
  * 		   @richardshepherd   
  */
 
-/*a.button {
-    border-radius: 3px;
-    padding-left: 3px;
-    padding-right: 3px;
-    text-decoration: none;
-    color: #000;
-    background: #fff;
-}
-
-a.button:active {
-    background: #111;
-    color: #000;
-}*/
-
 h1 {
     font-family:  'Lobster Two';
     font-size: 84px;
@@ -264,7 +250,7 @@ div.blog_skip_button {
 }
 
 a.button {
-    width: normal;
+    width: auto;
     background-color: #3278BE;
     font-size:30px;
     color:#fff;
@@ -364,7 +350,7 @@ strong {
 
 a.sponsor {
     font-weight: normal;
-    text-size: normal;
+    font-size: medium;
     margin-left: 20%;
     max-width: 50%;
     width: auto;
@@ -445,22 +431,30 @@ td.error {
 }
 
 input.submit {
-    width: 80%
     height: 2em;
     font-size: 24px;
 }
 
 div#sponsor_form {
-    background: url(../images/postcard_cropped.jpg) 250px 130px no-repeat fixed transparent;
+    font-family: "Coming Soon";
+    background: url(../images/parispostcard_scaled.jpg) no-repeat transparent;
     position: fixed;
     top: 15%;
     left: 15%;
     display: none;
     z-index: 9999;
-    height: 660px;
-    width: 1011px;
+    height: 633px;
+    width: 1006px;
     color: #000;
-    box-shadow: 0 0 100px rgba(0,0,0,1);
+    box-shadow: 0 0 50px #000;
+    border-radius: 5px;
+    -moz-transform: rotate(-1deg);
+    /*-webkit-transform: rotate(-1deg);
+    -o-transform: rotate(-1deg);
+    -ms-transform: rotate(-1deg);*/
+
+
+
 }
 
 div#sponsor_form h1 {
@@ -491,15 +485,17 @@ div.fieldset span.label {
     display: none;
     position: absolute;
     left: 600px;
-    top: 250px;
+    top: 20px;
 }
 
 #details {
     display: none;
-    position: absolute;
+    margin-top: 0;
+    padding-top: 0;
+    /*position: absolute;
     left: 12px;
     top: 350px;
-    width: 488px;
+    width: 488px;*/
 }
 
 #cc_info, #check_info {
@@ -509,8 +505,8 @@ div.fieldset span.label {
 #postcard_content {
     position: absolute;
     left: 12px;
-    top: 200px;
-    width: 488px;
+    top: 170px;
+    width: 450px;
 }
 
 #check_info blockquote {
@@ -520,11 +516,23 @@ div.fieldset span.label {
     font-weight: bold;
 }
 
-div.fieldset input {
+div.fieldset input,
+div.fieldset select {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    font-family: 'Coming Soon';
     border: none;
     border-bottom: #000 dashed 1px;
     background-color: transparent;
+    margin: 2px 0 2px 0;
     outline: none;
+}
+
+#address_info input {
+    line-height: 1.7em;
+    text-align: left;
+    width: auto;
 }
 
 div.fieldset input:focus {
@@ -537,9 +545,11 @@ input.submit {
     right: 1em;
 }
 
-div#sponsor_form p {
-    width: 75%
-    font-size: 2em;
+input:-moz-placeholder,
+textarea::-moz-placeholder,
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color:#ccc;
 }
 
 a.close {

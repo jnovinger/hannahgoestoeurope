@@ -10,6 +10,7 @@
   <meta name="author" content="Jason Novinger">
 
   <link href='http://fonts.googleapis.com/css?family=Lobster+Two:700&v2' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css">
   <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
 </head>
@@ -146,36 +147,64 @@
 
 $('#id_postcard').change(function() {
     if ($(this).val() == 'True') {
-        $('#address_info').show(1000);
+        $('#address_info').fadeIn('slow');
     } else {
-        $('#address_info').hide(1000);
+        $('#address_info').fadeOut('slow');
     }
 })
 
-$('#id_first_name').change(function() {
-    $('#id_first_name_2').val($('#id_first_name').val());
+$('#id_first_name').keyup(function() {
+    $('#id_full_name').val($(this).val() + " " + $('#id_last_name').val());
+    $(this).attr('size', parseInt($(this).val().length) + 2);
 })
 
-$('#id_last_name').change(function() {
-    $('#id_last_name_2').val($('#id_last_name').val());
+$('#id_last_name').keyup(function() {
+    $('#id_full_name').val($('#id_first_name').val() + " " + $(this).val());
+    $(this).attr('size', parseInt($(this).val().length) + 2);
 })
 
 $('#id_payment_type').change(
     function() {
         val = $('#id_payment_type').val();
         if (val == "check") {
-            $('#details').show(1000);
-            $('#check_info').show(1000);
-            $('#cc_info').hide(1000);
+            $('#cc_info').fadeOut('slow');
+            $('#details').fadeIn('slow');
+            $('#check_info').fadeIn('slow');
         } else if (val == "cc") {
-            $('#details').show(1000);
-            $('#cc_info').show(1000);
-            $('#check_info').hide(1000);
+            $('#check_info').fadeOut('slow');
+            $('#details').fadeIn('slow');
+            $('#cc_info').fadeIn('slow');
         } else {
-            $('#details').hide(1000);
+            $('#details').fadeOut('slow');
         }
     }
 );
+
+function center_object(obj) {
+    win = $(window);
+    obj.css({
+        'top': (win.height() - obj.height()) / 2 + 'px',
+        'left': (win.width() - obj.width()) / 2 + 'px',
+    });
+}
+
+/* Handle resizing the window */
+$(window).resize(function() {
+    center_object($('#sponsor_form'));
+    $('.story').height($(window).height());
+});
+
+function show_donation_form() {
+    $('#blanket').fadeIn('slow');
+    form = $('#sponsor_form');
+    form.fadeIn('slow');
+
+    center_object(form);
+
+    $('#id_first_name').focus();
+
+    return false;
+}
 
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-28426172-1']);

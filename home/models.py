@@ -1,3 +1,4 @@
+from django.contrib.localflavor.us.us_states import US_STATES
 from django.db import models
 
 class Post(models.Model):
@@ -12,16 +13,6 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['publish_date', ]
-
-STATE_CHOICES = (
-    ('AK', 'Alaska'),
-    ('GA', 'Georgia'),
-    ('IN', 'Indiana'),
-    ('KS', 'Kansas'),
-    ('MO', 'Missouri'),
-    ('NY', 'New York'),
-    ('TX', 'Texas')
-)
 
 PMT_CHOICES = (
     ('', ''),
@@ -47,7 +38,7 @@ class Donation(models.Model):
     postcard = models.BooleanField()
     address = models.CharField(max_length=255, blank=True, null=True)
     city = models.CharField(max_length=60, blank=True, null=True)
-    state = models.CharField(max_length=2, choices=STATE_CHOICES, blank=True, null=True)
+    state = models.CharField(max_length=2, choices=US_STATES, blank=True, null=True)
     zip = models.CharField(max_length=5, blank=True, null=True)
 
     amount = models.DecimalField(max_digits=5, decimal_places=2)

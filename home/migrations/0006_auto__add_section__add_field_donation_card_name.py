@@ -15,9 +15,6 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('home', ['Section'])
 
-        for section in ['london', 'kent', 'paris']:
-            orm.Section.objects.create(slug=section)
-
         # Adding field 'Donation.card_name'
         db.add_column('home_donation', 'card_name', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True), keep_default=False)
 

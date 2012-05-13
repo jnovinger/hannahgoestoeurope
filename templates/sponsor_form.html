@@ -1,6 +1,6 @@
 <div id="sponsor_form" class="popover" align="center">
-  <form action="" method="post">
-  <input type="Submit" class="submit" value="Send!">
+  <form action="" method="post" id="payment-form">
+  <input type="Submit" class="submit" value="Send!" id="submit-button">
 
   <a class="close" href="" onclick="$('#blanket').fadeOut('slow'); $('#sponsor_form').fadeOut('slow'); return false;">Cancel</a>
   {% if form %}
@@ -12,16 +12,15 @@
       </div>
       <div class="fieldset" id="details">
         <div id="cc_info">
-          Alrighty then, my credit card number is <input id='cc_number' type="text" size=16> and it expires {{ form.month }}, {{ form.year }}. That three digit code thingy on the back is <input type=text size=3 id='cvv'> 
+          Alrighty then, my credit card number is <input id='cc_number' type="text" size=16> and it expires {{ form.month }}, {{ form.year }}. That three digit code thingy on the back is <input type=text size=3 id='cvc'>. We use <a href="https://stripe.com/about" target="_stripe">Stripe</a> for credit card payments.
         </div>
         <div id="check_info">
-          I going to send a check to
+          I am going to send a check to
           <blockquote>
             Hannah Novinger<br>
             1501 E 24th Street<br>
             Lawrence, KS 66046<br>
           </blockquote>
-          Thanks again!
         </div>
       </div>
       <div class="fieldset" id="address_info">

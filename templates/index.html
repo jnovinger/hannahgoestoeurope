@@ -133,11 +133,11 @@
   <!-- Our Javascript, starting with jQuery -->
   <!-- uncomment the next line for local dev, and comment out the googleapis line -->
   <!--script src='{{ STATIC_URL }}js/libs/jquery-1.7.1.min.js'></script-->
+  <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
   <script src='{{ STATIC_URL }}js/easing.js'></script>
   <script src='{{ STATIC_URL }}js/libs/jquery.scrollTo-1.4.2-min.js'></script>
   <script src="{{ STATIC_URL }}js/script.js"></script>
-  <script src="{{ STATIC_URL }}js/popover.js"></script>
   <!--[if lt IE 7 ]>
     <script src="js/libs/dd_belatedpng.js"></script>
     <script>DD_belatedPNG.fix("img, .png_bg");
@@ -145,6 +145,7 @@
 
 <script type="text/javascript">
 
+/* General UI/UX stuff*/
 $('#id_postcard').change(function() {
     if ($(this).val() == 'True') {
         $('#address_info').fadeIn('slow');
@@ -206,6 +207,48 @@ function show_donation_form() {
     return false;
 }
 
+/* Stripe stuff */
+// this identifies your website in the createToken call below
+Stripe.setPublishableKey('{{ stripe_publishable_key }}');
+
+$(document).ready(function() {
+  $("#payment-form").submit(function(event) {
+    // we should check here to verify that this is a CC transaction, returning
+    // now if not
+
+    // disable the submit button to prevent repeated clicks
+    $('#submit-button').attr("disabled", "disabled");
+
+    Stripe.createToken({
+        number: $('#cc_number').val(),
+        cvc: $('#cvc').val(),
+        exp_month: $('#id_month').val(),
+        exp_year: $('#id_year').val()
+    }, stripeResponseHandler);
+
+    // prevent the form from submitting with the default action
+    return false;
+  });
+});
+
+function stripeResponseHandler(status, response) {
+    if (response.error) {
+        // show the errors on the form
+        //alert(response.error.message)
+        $(".payment-errors").text(response.error.message);
+    } else {
+        var form$ = $("#payment-form");
+        // token contains id, last4, and card type
+        var token = response['id'];
+        // insert the token into the form so it gets submitted to the server
+        form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+        // and submit
+        alert('Submitted! Stripe returned the following token: ' + token)
+        //form$.get(0).submit();
+    }
+}
+
+/* Google Analytics*/
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-28426172-1']);
 _gaq.push(['_trackPageview']);

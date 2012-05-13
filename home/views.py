@@ -1,5 +1,6 @@
 from math import floor
 
+from django.conf import settings
 from django.db.models import Sum
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -29,5 +30,6 @@ def home(request):
             'posts': posts,
             'section_sponsors': section_sponsors,
             'form': form,
+            'stripe_publishable_key': settings.STRIPE_PUBLISHABLE_KEY,
         },
         context_instance=RequestContext(request))

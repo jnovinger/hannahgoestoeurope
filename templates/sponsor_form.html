@@ -16,11 +16,14 @@
 
         <span class='label'>That's so cool!</span>
 
-        <p>My name is <input id="id_first_name" type="text" name="first_name" maxlength="50" size="2" value="{{ form.first_name.value }}" /> <input id="id_last_name" type="text" name="last_name" maxlength="255" size="2" value="{{ form.last_name.value }}" /> and I want to help out. Here's my {{ form.amount }} to help Hannah visit {{ form.sections }} I'll pay with {{ form.payment_type }}. Oh yeah, and I {{ form.postcard }} a postcard from Europe.</p>
+        <p>My name is
+          <input id="id_first_name" type="text" name="first_name" maxlength="50" size="2" value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}" title="First name" />
+          <input id="id_last_name" type="text" name="last_name" maxlength="255" size="2" value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}" title="Last name" />
+          and I want to help out. Here's my {{ form.amount }} to help Hannah visit {{ form.sections }} I'll pay with {{ form.payment_type }}. Oh yeah, and I {{ form.postcard }} a postcard from Europe.</p>
       </div>
       <div class="fieldset" id="details">
         <div id="cc_info">
-          Alrighty then, my credit card number is <input id='cc_number' type="text" size=16> and it expires {{ form.month }}, {{ form.year }}. That three digit code thingy on the back is <input type=text size=3 id='cvc'>. We use <a href="https://stripe.com/about" target="_stripe">Stripe</a> for credit card payments.
+          Alrighty then, my credit card number is <input id='cc_number' type="text" size=16 title="Credit card number" /> and it expires {{ form.month }}, {{ form.year }}. That three digit code thingy on the back is <input type=text size=3 id='cvc' title="3 digit thingy" />. We use <a href="https://stripe.com/about" target="_stripe">Stripe</a> for credit card payments.
         </div>
         <div id="check_info">
           I am going to send a check to

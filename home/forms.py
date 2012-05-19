@@ -60,4 +60,9 @@ class DonationForm(ModelForm):
             cleaned_data['postcard'] = True;
         if not isinstance(cleaned_data['sections'], Iterable):
             cleaned_data['sections'] = [cleaned_data['sections'],]
+
+        if cleaned_data['postcard']:
+            if not cleaned_data['address'] or not cleaned_data['city'] or not cleaned_data['state'] or not cleaned_data['zip']:
+                self.errors['address'] = "So you say you want a postcard, but then you don't leave an address, what gives? Please drop a street address, city, state, and zip code below."
+
         return cleaned_data

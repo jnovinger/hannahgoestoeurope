@@ -1,5 +1,5 @@
 <div id="sponsor_form" class="popover" align="center">
-  <form action="" method="post" id="payment-form">
+  <form action="." method="post" id="payment-form">
   <input type="Submit" class="submit" value="Send!" id="submit-button">
 
   <a class="close" href="" onclick="$('#blanket').fadeOut('slow'); $('#sponsor_form').fadeOut('slow'); return false;">Cancel</a>
@@ -10,7 +10,7 @@
         {% if form.errors %}
           <ul id="form-errors">
             {% if form.amount.errors %}
-              <li>Nice try, we're not going anywhere till you select a donation amount. Thanks!</li>
+              <li>Nice try, we're not going anywhere till you select a donation amount. Oh, and thanks!</li>
             {% endif %}
           </ul>
         {% endif %}
@@ -33,6 +33,9 @@
       </div>
       <div class="fieldset" id="address_info">
         <span class="label">Send my postcard to ...</span>
+        {% if form.errors.address %}
+            <p class="error">{{ form.errors.address }}</p>
+        {% endif %}
         <p>
           <input id="id_full_name" type="text" maxlength="255" size="25" title='Full name' /><br>
           <input id="id_address" type="text" name="address" maxlength="255" title='Street Address' /><br>

@@ -164,22 +164,23 @@ $('#id_last_name').keyup(function() {
     $(this).attr('size', parseInt($(this).val().length) + 2);
 })
 
-$('#id_payment_type').change(
-    function() {
-        val = $('#id_payment_type').val();
-        if (val == "check") {
-            $('#cc_info').fadeOut('slow');
-            $('#details').fadeIn('slow');
-            $('#check_info').fadeIn('slow');
-        } else if (val == "cc") {
-            $('#check_info').fadeOut('slow');
-            $('#details').fadeIn('slow');
-            $('#cc_info').fadeIn('slow');
-        } else {
-            $('#details').fadeOut('slow');
-        }
+function toggle_payment_info() {
+    val = $('#id_payment_type').val();
+    if (val == "check") {
+        $('#cc_info').fadeOut('slow');
+        $('#details').fadeIn('slow');
+        $('#check_info').fadeIn('slow');
+    } else if (val == "cc") {
+        $('#check_info').fadeOut('slow');
+        $('#details').fadeIn('slow');
+        $('#cc_info').fadeIn('slow');
+    } else {
+        $('#details').fadeOut('slow');
     }
-);
+}
+
+
+$('#id_payment_type').change(toggle_payment_info);
 
 function center_object(obj) {
     win = $(window);
@@ -202,18 +203,39 @@ sections = new Object();
 {% endfor %}
 
 function show_donation_form(section) {
+    // drop the curtain
     $('#blanket').fadeIn('slow');
+
+    // center the form
     form = $('#sponsor_form');
     center_object(form);
+
+    // resize name fields
+    first = $('#id_first_name')
+    last = $('#id_last_name')
+    first.attr('size', parseInt(first.val().length) + 2);
+    last.attr('size', parseInt(last.val().length) + 2);
+
+    // populate name line on address info
+    $('#id_full_name').val(first.val() + " " + last.val());
+
+    // show the form
     form.fadeIn('slow');
 
+    // show the appropriate payment instructions
+    toggle_payment_info();
+
+    // show address fields if necessary
     if ($('#id_postcard').val() === "True") {
         $('#address_info').fadeIn('slow');
     }
 
+    // if clicked from button on main page, populate section dropown
     if (section !== null) {
         $('#id_sections').val(sections[section]);
     }
+
+    // put the focus on the first name field
     $('#id_first_name').focus();
 
     return false;
@@ -259,7 +281,9 @@ function stripeResponseHandler(status, response) {
         // show the errors on the form
         //alert(response.error.message)
         $('#submit-button').removeAttr('disabled');
-        $("#payment-errors").text(response.error.message);
+        pay_err = $('#payment-errors');
+        pay_err.text(response.error.message);
+        pay_err.fadeIn('slow');
     } else {
         var form$ = $("#payment-form");
         // token contains id, last4, and card type

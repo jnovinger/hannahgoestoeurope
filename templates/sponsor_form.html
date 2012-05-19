@@ -7,6 +7,13 @@
     <div id="postcard_content">
       <div class="fieldset" id="madblib">{% csrf_token %}
         <p id="payment-errors"></p>
+        {% if form.errors %}
+          <ul id="form-errors">
+            {% if form.amount.errors %}
+              <li>Nice try, we're not going anywhere till you select a donation amount. Thanks!</li>
+            {% endif %}
+          </ul>
+        {% endif %}
         <span class='label'>That's so cool!</span>
 
         <p>My name is <input id="id_first_name" type="text" name="first_name" maxlength="50" size="2" /> <input id="id_last_name" type="text" name="last_name" maxlength="255" size="2" /> and I want to help out. Here's my {{ form.amount }} to help Hannah visit {{ form.sections }} I'll pay with {{ form.payment_type }}. Oh yeah, and I {{ form.postcard }} a postcard from Europe.</p>

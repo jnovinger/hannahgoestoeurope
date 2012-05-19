@@ -56,13 +56,20 @@ class DonationForm(ModelForm):
 
     def clean(self):
         cleaned_data = super(DonationForm, self).clean()
+
+        # fix postcard value
         if cleaned_data['postcard'] == 'True':
-            cleaned_data['postcard'] = True;
+            cleaned_data['postcard'] = True
+        else:
+            cleaned_data['postcard'] = False
+
+        # make sure sections is a list
         if not isinstance(cleaned_data['sections'], Iterable):
             cleaned_data['sections'] = [cleaned_data['sections'],]
 
+        # if postcard, make sure address is good
         if cleaned_data['postcard']:
             if not cleaned_data['address'] or not cleaned_data['city'] or not cleaned_data['state'] or not cleaned_data['zip']:
-                self.errors['address'] = "So you say you want a postcard, but then you don't leave an address, what gives? Please drop a street address, city, state, and zip code below."
+                self.errors['address'] = "I know you want a postcard, but you've to tell me where to send it!"
 
         return cleaned_data

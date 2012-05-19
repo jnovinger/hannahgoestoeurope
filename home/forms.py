@@ -34,6 +34,16 @@ MO_CHOICES = (
     ('12', 'December'),
 )
 
+# do some precomputation for building up lists of sections
+all_sections = Section.objects.all()
+all_sections_label = ''
+for i, section in enumerate(all_sections):
+    if i != len(all_sections) - 1:
+        all_sections_label += str(section) + ', '
+    else:
+        all_sections_label += '& ' + str(section)
+all_sections_list = all_sections.values_list('pk', flat=True)
+
 YR_CHOICES = []
 for x in range(8):
     yr = datetime.date.today().year + x
@@ -47,8 +57,8 @@ class DonationForm(ModelForm):
     amount = ChoiceField(choices=AMOUNT_CHOICES)
     payment_type = ChoiceField(choices=PMT_CHOICES)
     zip = CharField(max_length=5, required=False)
-    sections = ModelChoiceField(required=True, empty_label='',
-        queryset=Section.objects.all()
+    sections = ModelChoiceField(required=False, empty_label=all_sections_label,
+        queryset=all_sections
     )
     class Meta:
         model = Donation
@@ -63,9 +73,12 @@ class DonationForm(ModelForm):
         else:
             cleaned_data['postcard'] = False
 
-        # make sure sections is a list
-        if not isinstance(cleaned_data['sections'], Iterable):
-            cleaned_data['sections'] = [cleaned_data['sections'],]
+        # make sure sections is a list, if not there, select all
+        if cleaned_data['sections'] is not None:
+            if not isinstance(cleaned_data['sections'], Iterable):
+                cleaned_data['sections'] = [cleaned_data['sections'],]
+        else:
+            cleaned_data['sections'] = all_sections_list
 
         # if postcard, make sure address is good
         if cleaned_data['postcard']:

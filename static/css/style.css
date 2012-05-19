@@ -336,9 +336,13 @@ span.donor {
     font-size: 10px;
 }
 
-td.error {
-color: red;
-    font-size: 0.5em;
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+#payment-errors {
+    display: none;
 }
 
 strong {
@@ -484,8 +488,9 @@ div.fieldset span.label {
 #address_info {
     display: none;
     position: absolute;
-    left: 600px;
+    left: 550px;
     top: 20px;
+    min-width: 70%;
 }
 
 #details {

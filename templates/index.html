@@ -87,10 +87,10 @@
         <!--<div class="photograph" data-type="sprite" data-offsetY="1250" data-Xposition="25%" data-speed="2"></div>-->
         <article>
             <h2 class="lead">Kent, England</h2>
-            <div class="textbox">        
-                <p>The next step in your parallax scrolling adventure is to create some sprites!</p>
-                <p>I have cut out one of the photos in this background and use it as a sprite. It scrolls at a different speed to the background <i>and</i> the window, and it's this effect that's used so well on Nike Better World and other parallax sites..</p>
-                <p>Using too many sprites can slow down older computers, and you need to use some clever maths (and trial &amp; error!) to work out their placement on the page.</p>
+            <div class="textbox">
+                <p>Kent is steeped in history and heritage and is also rightly renowned throughout the world as the Garden of England. The extensive coastline boasts an enviable array of blue flag award winning beaches and thrilling watersports activities.</p>
+
+                <p>It's easy to visit Kent in England's south east corner, just 35 minutes from central London by high speed rail link, there's never been a better time to visit. Once here, you can stay carbon friendly and visit much of Kent by train including the county's iconic landmarks such as Canterbury Cathedral, Leeds Castle and the White Cliffs of Dover.</p>
 
             </div>
             {% include "sponsor_button.html" with section="kent" %}
@@ -195,13 +195,19 @@ $(window).resize(function() {
     $('.story').height($(window).height());
 });
 
-function show_donation_form() {
+sections = new Object();
+
+{% for section in sections %}
+    sections['{{ section|lower }}'] = {{ forloop.counter }};
+{% endfor %}
+
+function show_donation_form(section) {
     $('#blanket').fadeIn('slow');
     form = $('#sponsor_form');
     form.fadeIn('slow');
 
     center_object(form);
-
+    $('#id_sections').val(sections[section]);
     $('#id_first_name').focus();
 
     return false;
@@ -214,6 +220,9 @@ Stripe.setPublishableKey('{{ stripe_publishable_key }}');
 $(document).ready(function() {
   $("#payment-form").submit(function(event) {
     // we should check here to verify that this is a CC transaction, returning
+    if ($('#id_payment_type').val() == 'check') {
+        return;
+    }
     // now if not
 
     // disable the submit button to prevent repeated clicks
@@ -235,7 +244,8 @@ function stripeResponseHandler(status, response) {
     if (response.error) {
         // show the errors on the form
         //alert(response.error.message)
-        $(".payment-errors").text(response.error.message);
+        $('#submit-button').removeAttr('disabled');
+        $("#payment-errors").text(response.error.message);
     } else {
         var form$ = $("#payment-form");
         // token contains id, last4, and card type
@@ -244,7 +254,7 @@ function stripeResponseHandler(status, response) {
         form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
         // and submit
         alert('Submitted! Stripe returned the following token: ' + token)
-        //form$.get(0).submit();
+        form$.get(0).submit();
     }
 }
 

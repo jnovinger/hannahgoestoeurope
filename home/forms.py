@@ -1,3 +1,4 @@
+from collections import Iterable
 import datetime
 
 from django.forms import ModelForm, CharField, ModelChoiceField, ModelMultipleChoiceField
@@ -45,10 +46,18 @@ class DonationForm(ModelForm):
     postcard = ChoiceField(choices=PC_CHOICES)
     amount = ChoiceField(choices=AMOUNT_CHOICES)
     payment_type = ChoiceField(choices=PMT_CHOICES)
-    zip = CharField(max_length=5)
+    zip = CharField(max_length=5, required=False)
     sections = ModelChoiceField(required=True, empty_label='',
         queryset=Section.objects.all()
     )
     class Meta:
         model = Donation
         exclude = ['date', 'received', 'cleared', ]
+
+    def clean(self):
+        cleaned_data = super(DonationForm, self).clean()
+        if cleaned_data['postcard'] == 'True':
+            cleaned_data['postcard'] = True;
+        if not isinstance(cleaned_data['sections'], Iterable):
+            cleaned_data['sections'] = [cleaned_data['sections'],]
+        return cleaned_data

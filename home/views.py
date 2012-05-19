@@ -1,18 +1,38 @@
-from math import floor
-
 from django.conf import settings
+from django.contrib.auth.models import Message
 from django.db.models import Sum
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+import stripe
 
 from models import Post, Donation, Section
 from forms import DonationForm
+
+
+def _charge_card(post):
+    stripe.api_key = settings.STRIPE_PRIVATE_KEY
+    charge = stripe.Charge.create(
+        amount=int(float(post['amount']) * 100),
+        currency='usd',
+        card=post['stripeToken'],
+        description="Donation at http://hannahgoestoeurope.com"
+    )
+    return charge['paid']
 
 def home(request):
     if request.POST:
         form = DonationForm(request.POST)
         if form.is_valid():
-            form.save()
+            donation = form.save(commit=False)
+
+            if 'stripeToken' in request.POST:
+                charged = _charge_card(request.POST)
+                if charged:
+                    donation.cleared = donation.received = True
+            donation.save()
+            for sec in form.cleaned_data['sections']:
+                donation.sections.add(sec)
+
             form = DonationForm
             # don't forget to create success msg
     else:
@@ -27,6 +47,7 @@ def home(request):
     return render_to_response(
         'index.html',
         {
+            'sections': sections,
             'posts': posts,
             'section_sponsors': section_sponsors,
             'form': form,

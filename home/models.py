@@ -43,7 +43,7 @@ class Donation(models.Model):
 
     amount = models.DecimalField(max_digits=5, decimal_places=2)
     payment_type = models.CharField(max_length=5, choices=PMT_CHOICES)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
 
     sections = models.ManyToManyField(Section, related_name='donations')
     received = models.BooleanField()
@@ -57,6 +57,10 @@ class Donation(models.Model):
         full_name = self.first_name
         full_name = full_name + " " + self.last_name if self.last_name else full_name
         return u"%s - $%s" % (full_name, self.amount)
+
+    @property
+    def get_sections(self):
+        return self.sections.all()
 
     class Meta:
         ordering = ['date', 'last_name', 'first_name', 'amount', ]

@@ -204,10 +204,16 @@ sections = new Object();
 function show_donation_form(section) {
     $('#blanket').fadeIn('slow');
     form = $('#sponsor_form');
+    center_object(form);
     form.fadeIn('slow');
 
-    center_object(form);
-    $('#id_sections').val(sections[section]);
+    if ($('#id_postcard').val() === "True") {
+        $('#address_info').fadeIn('slow');
+    }
+
+    if (section !== null) {
+        $('#id_sections').val(sections[section]);
+    }
     $('#id_first_name').focus();
 
     return false;
@@ -218,6 +224,14 @@ function show_donation_form(section) {
 Stripe.setPublishableKey('{{ stripe_publishable_key }}');
 
 $(document).ready(function() {
+  {% if show_form %}show_donation_form(null);{% endif %}
+
+  /* Do any hiding/showing we need to do */
+  if (window.location.hash === "#donate") {
+    show_donation_form(null);
+  }
+
+  /* Set up form handler for Stripe*/
   $("#payment-form").submit(function(event) {
     // we should check here to verify that this is a CC transaction, returning
     if ($('#id_payment_type').val() == 'check') {

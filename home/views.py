@@ -20,6 +20,7 @@ def _charge_card(post):
     return charge['paid']
 
 def home(request):
+    show_form = False
     if request.POST:
         form = DonationForm(request.POST)
         if form.is_valid():
@@ -35,6 +36,8 @@ def home(request):
 
             form = DonationForm
             # don't forget to create success msg
+        else:
+            show_form = True
     else:
         form = DonationForm
 
@@ -47,6 +50,7 @@ def home(request):
     return render_to_response(
         'index.html',
         {
+            'show_form': show_form,
             'sections': sections,
             'posts': posts,
             'section_sponsors': section_sponsors,

@@ -329,6 +329,10 @@ span.donor {
     font-size: 10px;
 }
 
+a.licensing {
+    font-size: 0.5em;
+}
+
 .error {
     color: red;
     font-weight: bold;
@@ -448,7 +452,8 @@ div#sponsor_form {
     -moz-transform: rotate(-1deg);
 }
 
-div#thanks {
+div#thanks,
+div#about {
     position: fixed;
     top: 15%;
     left: 15%;
@@ -464,6 +469,21 @@ div#thanks {
     text-align: left;
 }
 
+#about a {
+    color: #fff;
+}
+
+#about p {
+    margin-bottom: 1em;
+}
+
+#about h1{
+    text-align: center;
+}
+
+#about p:last-child {
+    margin-bottom: 0;
+}
 #thanks p {
     margin: 0.5em 0 0.5em 0;
 }
@@ -504,10 +524,6 @@ div.fieldset span.label {
     display: none;
     margin-top: 0;
     padding-top: 0;
-    /*position: absolute;
-    left: 12px;
-    top: 350px;
-    width: 488px;*/
 }
 
 #cc_info, #check_info {
@@ -577,7 +593,7 @@ a.close {
     color: #fff;
     right: 1em;
     position: absolute;
-    bottom: 1em;
+    top: 1em;
     width: auto;
 }
 

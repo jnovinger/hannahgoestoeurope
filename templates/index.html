@@ -45,10 +45,6 @@
 
 
             <!--div class="footer">
-                <p>Gratuitously ripped off from Richard Shepherd / Twitter: <a href="http://twitter.com/richardshepherd" target="_blank">@richardshepherd</a><br>Web: <a href="http://richardshepherd.com">richardshepherd.com</a> / Original code: <a href="https://github.com/richardshepherd/Parallax-Scrolling/">Fork it here!</a></p>
-                <p>
-                    Original adapted and backend built by <a href="http://www.jnovinger.net">Jason Novinger</a>.
-                </p>
             </div-->
             {% if blog_entries %}
             <div class="blog_skip_button">
@@ -57,7 +53,7 @@
             {% endif %}
 
             <div class="license">
-                <a href="http://en.wikipedia.org/wiki/File:London_Eye_Twilight_April_2006.jpg" target="license">About</a>
+                <a onclick="$('#blanket').fadeIn('slow'); $('#about').fadeIn('slow'); center_object($('#about')); return false;" href="">About</a>
             </div>
         </article>
     </section>
@@ -76,9 +72,6 @@
 
             {% include "sponsor_button.html" with section="london" %}
             {% include "section-nav.html" with next="kent" prev="first" %}
-            <!--<div class="license">-->
-                <!--<a href="http://en.wikipedia.org/wiki/File:Palace_of_Westminster,_London_-_Feb_2007.jpg" target="license">License</a>-->
-            <!--</div>-->
         </article>
     </section>
    
@@ -130,6 +123,21 @@
   <div id="blanket" style="display:none;"></div>
   {% include "sponsor_form.html" %}
   <div id="about" class="popover" align="center">
+    <span class="close_right">[ <a href="" onclick="$('#blanket').fadeOut('slow'); $('#about').fadeOut('slow'); return false;">Close</a> ]</span>
+
+    <h1 class="lead">About this site</h1>
+
+    <p>The basic design and parallax effect of the site was gratuitously ripped off from <strong><a href="http://twitter.com/richardshepherd" target="_blank">Richard Shepherd</a></strong>. You can read the original article <strong><a href="http://coding.smashingmagazine.com/2011/07/12/behind-the-scenes-of-nike-better-world/" target="_blank">here</a></strong> and check out the code on <strong><a href="https://github.com/richardshepherd/Parallax-Scrolling/" target="_blank">Github</a></strong></p>
+    <p>Adapted and backend built by <strong><a href="mailto:jnovinger@gmail.com">Jason Novinger</a></strong>. The backend of the site is built with <strong><a href="https://www.djangoproject.com/" target="_blank">Django</a></strong>, the Web framework for perfectionists with deadlines. We use <strong><a href="https://stripe.com/about" target="_stripe">Stripe</a></strong> for credit card payments.</p>
+
+    <p>All images on this site are used with permission of their creators:</p>
+    <ul>
+      <li><a href="http://commons.wikimedia.org/wiki/File:London_Eye_Twilight_April_2006.jpg" target="_image">London Eye</a> - <a href="http://commons.wikimedia.org/wiki/File:London_Eye_Twilight_April_2006.jpg#Licensing" target="_blank" class="licensing" target="_license">Creative Commons Attribution 2.5 Generic license</a></li>
+      <li><a href="https://commons.wikimedia.org/wiki/File:Palace_of_Westminster,_London_-_Feb_2007.jpg" target="_image">Palace of Westminster</a> - <a href="https://commons.wikimedia.org/wiki/File:Palace_of_Westminster,_London_-_Feb_2007.jpg#Licensing" class="licensing" target="_license">by David Iliff. License: CC-BY-SA 3.0</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/File:Canterbury_Cathedral_-_Portal_Nave_Cross-spire.jpeg" target="_image">Canterbury Cathedral</a> - <a href="https://en.wikipedia.org/wiki/File:Canterbury_Cathedral_-_Portal_Nave_Cross-spire.jpeg#Licensing" class="licensing" target="_license">Creative Commons Attribution-Share Alike license</a></li>
+      <li><a href="https://commons.wikimedia.org/wiki/File:Paris_Night.jpg" target="_image">Paris night</a> - <a href="https://commons.wikimedia.org/wiki/File:Paris_Night.jpg#Licensing" target="_license" class="licensing">Creative Commons Attribution-Share Alike license</a></li>
+      <li>French <a href="http://graphicsfairy.blogspot.com/2010/05/free-vintage-travel-postcard-paris-arc.html" target="_image">postcard</a></li>
+    </ul>
 
   </div>
   {% if thanks %}

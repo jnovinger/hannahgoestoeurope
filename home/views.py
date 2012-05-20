@@ -20,7 +20,7 @@ def _charge_card(post):
     return charge['paid']
 
 def home(request):
-    show_form = False
+    context = {}
     if request.POST:
         form = DonationForm(request.POST)
         if form.is_valid():
@@ -33,28 +33,21 @@ def home(request):
             donation.save()
             for sec in form.cleaned_data['sections']:
                 donation.sections.add(sec)
+            context['thanks'] = form.cleaned_data['first_name']
+            context['postcard'] = form.cleaned_data['postcard']
 
-            form = DonationForm
-            # don't forget to create success msg
         else:
-            show_form = True
-    else:
-        form = DonationForm
+            context['show_form'] = True
+    form = DonationForm
 
-    posts = Post.objects.filter(is_published=True)[:5]
-    sections = Section.objects.all()
+    sections = Section.objects.select_related()
     section_sponsors = {}
     for section in sections:
         section_sponsors[section.slug] = section.donations.all()
 
-    return render_to_response(
-        'index.html',
-        {
-            'show_form': show_form,
-            'sections': sections,
-            'posts': posts,
-            'section_sponsors': section_sponsors,
-            'form': form,
-            'stripe_publishable_key': settings.STRIPE_PUBLISHABLE_KEY,
-        },
-        context_instance=RequestContext(request))
+    context['sections'] = sections
+    context['section_sponsors'] = section_sponsors
+    context['form'] = form
+    context['stripe_publishable_key'] = settings.STRIPE_PUBLISHABLE_KEY
+
+    return render_to_response('index.html', context, context_instance=RequestContext(request))

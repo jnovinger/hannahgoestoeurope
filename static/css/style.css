@@ -139,14 +139,6 @@ article h2 {
     border: 1px solid rgba(150,150,150,0.1);
 }
 
-/*#london article strong,*/
-/*#london article a {*/
-    /*text-decoration: none;*/
-    /*font-size: larger;*/
-    /*font-weight: bold;*/
-    /*text-shadow: 0 3px 0 rgba(0,0,0,0.5);*/
-/*}*/
-
 #london article p {
     margin-bottom: 25px;
 }
@@ -319,11 +311,12 @@ p.sponsors {
 }
 
 span.donor {
+    display: inline-block;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
-    margin-right: 3px;
-    padding: 3px;
+    margin: 3px;
+    padding: 0 3px 0 3px;
     background: #ffdb58;
 }
 
@@ -453,12 +446,26 @@ div#sponsor_form {
     box-shadow: 0 0 50px #000;
     border-radius: 5px;
     -moz-transform: rotate(-1deg);
-    /*-webkit-transform: rotate(-1deg);
-    -o-transform: rotate(-1deg);
-    -ms-transform: rotate(-1deg);*/
+}
 
+div#thanks {
+    position: fixed;
+    top: 15%;
+    left: 15%;
+    padding: 20px;
+    z-index: 9999;
+    display: none;
+    max-width: 60%;
+    background-color: #3278BE;
+    box-shadow: 0 0 50px #000;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 2em;
+    text-align: left;
+}
 
-
+#thanks p {
+    margin: 0.5em 0 0.5em 0;
 }
 
 div#sponsor_form h1 {
@@ -563,4 +570,17 @@ a.close {
     bottom: 1em;
     left: 1em;
     width: auto;
+}
+
+.close_right {
+    font-size: smaller;
+    color: #fff;
+    right: 1em;
+    position: absolute;
+    bottom: 1em;
+    width: auto;
+}
+
+.close_right a {
+    color: #fff;
 }

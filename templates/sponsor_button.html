@@ -4,14 +4,7 @@
     {% if donations and sec == section %}
       <h3>{{ section|title }} portion sponsored by:</h3>
       <p class="sponsors">
-        {% for donation in donations %}
-          <span class="donor">{{ donation.first_name }}</span>
-        {% endfor %}
+        {% for donation in donations %}<span class="donor" title="{{ donation.first_name }} {{donation.last_name}}">{{ donation.first_name }}</span>{% endfor %}
       </p>
     {% endif %}
 {% endfor %}
-    <!--span class="donor">Jason &amp; Cindy</span>
-    <span class="donor">Dawn</span>
-    <span class="donor">Jeannie</span>
-    <span class="donor">Debi</span>
-    <span class="donor">Chris</span-->

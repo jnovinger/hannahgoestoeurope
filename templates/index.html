@@ -129,6 +129,22 @@
 
   <div id="blanket" style="display:none;"></div>
   {% include "sponsor_form.html" %}
+  <div id="about" class="popover" align="center">
+
+  </div>
+  {% if thanks %}
+  <div id="thanks" class="popover" align="center">
+    <span class="close_right">[ <a href="" onclick="$('#blanket').fadeOut('slow'); $('#thanks').fadeOut('slow'); return false;">Close</a> ]</span>
+    <p><strong>{{ thanks }},</strong></p>
+    <p>I've been surrounded and supported by awesome friends and family all of my life. You're
+    sponsorship is going to help me experience something amazing. I want you to know how much I appreciate it.</p>
+    <p>So, thank you, thank you, thank you!</p>
+    <strong>Hannah</strong>
+    {% if postcard %}
+    <p>P.S. Be watching your mailbox near the middle of June for awesome postcards from my awesome adventure in Europe!</p>
+    {% endif %}
+  </div>
+  {% endif %}
 
   <!-- Our Javascript, starting with jQuery -->
   <!-- uncomment the next line for local dev, and comment out the googleapis line -->
@@ -144,6 +160,13 @@
   <![endif]-->
 
 <script type="text/javascript">
+
+{% if thanks %}
+thanks = $('#thanks');
+center_object(thanks);
+$('#blanket').fadeIn('slow');
+thanks.fadeIn('slow');
+{% endif %}
 
 /* General UI/UX stuff*/
 $('#id_postcard').change(function() {
